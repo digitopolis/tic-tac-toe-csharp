@@ -4,9 +4,9 @@ namespace TicTacToe
 {
     public class CLI
     {
-        public void LogToConsole()
+        public void LogToConsole(string message)
         {
-            throw new NotImplementedException("not implemented");
+            Console.WriteLine(message);
         }
     }
 }

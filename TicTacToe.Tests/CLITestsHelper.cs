@@ -11,6 +11,7 @@ namespace TicTacToe.Tests
         public ConsoleOutput()
         {
           stringWriter = new StringWriter();
+          stringWriter.NewLine = "";
           originalOutput = Console.Out;
           Console.SetOut(stringWriter);
         }
