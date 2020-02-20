@@ -15,7 +15,7 @@ namespace TicTacToe.Tests
         public void PlayerHasName(){
             var name = "Matt";
             Player player = new Player(name);
-            Console.WriteLine(player.Name);
+            Assert.Equal(name, player.Name);
         }
     }
 }
