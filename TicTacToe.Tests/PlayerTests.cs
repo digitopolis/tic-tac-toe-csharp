@@ -8,7 +8,7 @@ namespace TicTacToe.Tests
     {
         [Fact]
         public void CanCreateNewPlayer(){
-            Player player = new Player;
+            Player player = new Player();
         }
     }
 }
