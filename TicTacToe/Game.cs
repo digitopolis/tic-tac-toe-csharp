@@ -6,7 +6,9 @@ namespace TicTacToe
     {
         public Game()
         {
-            
+            this.Board = new string[] { "", "", "", "", "", "", "", "", "" };
         }
+
+        public string[] Board { get; set; }
     }
 }

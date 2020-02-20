@@ -6,15 +6,15 @@ namespace TicTacToe.Tests
 {
     public class GameTests
     {
-        [Fact]
-        public void CanCreateNewGame()
-        {
-            Game game = new Game();
-        }
+        Game game = new Game();
 
-        public void GameHasABoard()
-        {
-            Game game = new Game();
-        }
+        [Fact]
+        public void CanCreateNewGame() => Assert.IsType<Game>(game);
+
+        [Fact]
+        public void GameHasABoard() => Assert.IsType<String[]>(game.Board);
+
+        [Fact]
+        public void GameBoardHasNineSpaces() => Assert.Equal(9, game.Board.Length);
     }
 }

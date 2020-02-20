@@ -20,7 +20,7 @@
       "outputPath": "/Users/mattreadout/Development/Apprenticeship/tic-tac-toe-csharp/TicTacToe/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/mattreadout/.config/NuGet/NuGet.Config"
+        "/Users/mattreadout/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
