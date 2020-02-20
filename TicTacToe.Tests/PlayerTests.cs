@@ -8,7 +8,14 @@ namespace TicTacToe.Tests
     {
         [Fact]
         public void CanCreateNewPlayer(){
-            Player player = new Player();
+            Player player = new Player("player");
+        }
+
+        [Fact]
+        public void PlayerHasName(){
+            var name = "Matt";
+            Player player = new Player(name);
+            Console.WriteLine(player.Name);
         }
     }
 }

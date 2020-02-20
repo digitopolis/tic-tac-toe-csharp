@@ -4,9 +4,11 @@ namespace TicTacToe
 {
     public class Player
     {
-        public Player()
+        public Player(string name)
         {
-            throw new NotImplementedException("not implemented");
+            this.Name = name;
         }
+
+        public string Name { get; set; }
     }
 }
