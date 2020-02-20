@@ -10,5 +10,6 @@ namespace TicTacToe
         }
 
         public string Name { get; set; }
+        public char Marker { get; set; }
     }
 }
