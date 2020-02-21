@@ -9,6 +9,7 @@ namespace TicTacToe.Tests
         [Fact]
         public void CanCreateNewPlayer(){
             Player player = new Player("player");
+            // add assertion for Player type
         }
 
         [Fact]
