@@ -6,25 +6,17 @@ namespace TicTacToe.Tests
 {
     public class PlayerTests
     {
-        Player player = new Player("player");
+        static string name = "Matt";
+        static char marker = 'X';
+        Player player = new Player(name, marker);
 
         [Fact]
         public void CanCreateNewPlayer() => Assert.IsType<Player>(player);
 
         [Fact]
-        public void PlayerHasName()
-        {
-            var name = "Matt";
-            player.Name = name;
-            Assert.Equal(name, player.Name);
-        }
+        public void PlayerHasName() => Assert.Equal(name, player.Name);
 
         [Fact]
-        public void PlayerHasMarker()
-        {
-            char marker = 'X';
-            player.Marker = marker;
-            Assert.Equal(marker, player.Marker);
-        }
+        public void PlayerHasMarker() => Assert.Equal(marker, player.Marker);
     }
 }

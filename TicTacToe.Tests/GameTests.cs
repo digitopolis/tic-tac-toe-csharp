@@ -20,8 +20,8 @@ namespace TicTacToe.Tests
         [Fact]
         public void GameHasTwoPlayers()
         {
-            Player player1 = new Player("first");
-            Player player2 = new Player("second");
+            Player player1 = new Player("first", 'X');
+            Player player2 = new Player("second", 'O');
             game.Player1 = player1;
             game.Player2 = player2;
 
