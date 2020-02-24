@@ -20,19 +20,19 @@ namespace TicTacToe.Tests
             }
         }
 
-        [Fact]
-        public void TestPrintCurrentBoard()
+        [Theory]
+        [InlineData("       |   X   |     ")]
+        [InlineData("  - - -+- - - -+- - -")]
+        [InlineData("       |       |   O ")]
+        public void TestPrintCurrentBoard(string line)
         {
             CLI cli = new CLI();
             char[] board = { ' ', 'X', ' ', ' ', ' ', 'O',  'X', ' ', ' ' };
-            string topLine = "       |   X   |     ";
-            string divider = "  - - -+- - - -+- - -";
             var currentConsoleOut = Console.Out;
             using (var consoleOutput = new ConsoleOutput())
             {
               cli.PrintBoard(board);
-              Assert.Contains(topLine, consoleOutput.GetOutput());
-              Assert.Contains(divider, consoleOutput.GetOutput());
+              Assert.Contains(line, consoleOutput.GetOutput());
             }
         }
     }
