@@ -11,6 +11,7 @@ namespace TicTacToe
             Game game = new Game();
             cli.WelcomeToGame();
             game.AddPlayers(cli);
+            game.DisplayCurrentBoard(cli);
         }
     }
 }

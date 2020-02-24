@@ -25,5 +25,10 @@ namespace TicTacToe
             this.Player1 = new Player(names[0], 'X');
             this.Player2 = new Player(names[1], 'O');
         }
+
+        public void DisplayCurrentBoard(IOutput output)
+        {
+            output.PrintBoard(this.Board);
+        }
     }
 }
