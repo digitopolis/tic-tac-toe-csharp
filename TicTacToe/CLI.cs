@@ -23,6 +23,16 @@ namespace TicTacToe
             string[] names = { player1Name, player2Name };
             return names;
         }
+
+        public void PrintBoard(char[] board)
+        {
+            string horizDivider = "  - - -+- - - -+- - -";
+            this.LogToConsole($"   {board[0]}   |   {board[1]}   |   {board[2]} ");
+            this.LogToConsole(horizDivider);
+            this.LogToConsole($"   {board[3]}   |   {board[4]}   |   {board[5]} ");
+            this.LogToConsole(horizDivider);
+            this.LogToConsole($"   {board[6]}   |   {board[7]}   |   {board[8]} ");
+        }
     }
 
     public interface IUserInput
