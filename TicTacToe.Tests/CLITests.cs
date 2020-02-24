@@ -19,5 +19,31 @@ namespace TicTacToe.Tests
               Assert.Equal(message, consoleOutput.GetOutput());
             }
         }
+
+        [Fact]
+        public void TestPrintCurrentBoard()
+        {
+            CLI cli = new CLI();
+            char[] board = { ' ', 'X', ' ', ' ', ' ', 'O',  'X', ' ', ' ' };
+            string topLine = "       |   X   |     ";
+            string divider = "  - - -+- - - -+- - -";
+            var currentConsoleOut = Console.Out;
+            using (var consoleOutput = new ConsoleOutput())
+            {
+              cli.PrintBoard(board);
+              Assert.Contains(topLine, consoleOutput.GetOutput());
+              Assert.Contains(divider, consoleOutput.GetOutput());
+            }
+        }
     }
 }
+
+
+/* 
+   1   |   2   |   3 
+  - - -+- - - -+- - -
+   4   |   5   |   6 
+  - - -+- - - -+- - -
+   7   |   8   |   9 
+
+*/
