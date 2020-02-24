@@ -8,7 +8,9 @@ namespace TicTacToe
 
         static void Main(string[] args)
         {
-            cli.LogToConsole("Welcome to Tic Tac Toe!");
+            Game game = new Game();
+            cli.WelcomeToGame();
+            game.AddPlayers(cli);
         }
     }
 }
