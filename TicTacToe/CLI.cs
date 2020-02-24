@@ -2,7 +2,7 @@ using System;
 
 namespace TicTacToe
 {
-    public class CLI : IUserInput
+    public class CLI : IUserInput, IOutput
     {
         public void LogToConsole(string message)
         {
@@ -38,5 +38,10 @@ namespace TicTacToe
     public interface IUserInput
     {
         string[] GetPlayerNames();
+    }
+
+    public interface IOutput
+    {
+        void PrintBoard(char[] board);
     }
 }
