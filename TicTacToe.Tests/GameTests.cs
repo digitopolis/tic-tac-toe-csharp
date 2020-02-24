@@ -40,5 +40,12 @@ namespace TicTacToe.Tests
         //Then Board is updated with player's marker
             Assert.Equal('X', game.Board[1]);
         }
+
+        [Fact]
+        public void GameCanAddPlayersWithNames()
+        {
+            game.AddPlayers(new FakeUserInput());
+            Assert.Equal("player 1 name", game.Player1.Name);
+        }
     }
 }

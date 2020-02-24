@@ -19,14 +19,5 @@ namespace TicTacToe.Tests
               Assert.Equal(message, consoleOutput.GetOutput());
             }
         }
-
-        [Fact]
-        public void TestUserInput()
-        {
-            CLI cli = new CLI();
-            string[] names = cli.GetPlayerNames(new FakeUserInput());
-
-            Assert.Equal("player 1 name", names[0]);
-        }
     }
 }
