@@ -9,6 +9,11 @@ namespace TicTacToe
             Console.WriteLine(message);
         }
 
+        public void WelcomeToGame()
+        {
+            this.LogToConsole("Welcome to Tic Tac Toe!\n\nTo start a new game, please enter both players' names\n\n");
+        }
+
         public string[] GetPlayerNames()
         {
             Console.WriteLine("Player 1 (X), please enter your name:");
