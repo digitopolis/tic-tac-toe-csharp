@@ -30,7 +30,7 @@ namespace TicTacToe.Tests
 
     public class FakeUserInput : IUserInput
     {
-        public string[] GetPlayerNames()
+        public string[] GetPlayerNames(Game game)
         {
             string[] fakeNames = { "player 1 name", "player 2 name" };
             return fakeNames;

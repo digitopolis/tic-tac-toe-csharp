@@ -23,7 +23,7 @@ namespace TicTacToe
 
         public void AddPlayers(IUserInput input)
         {
-            string[] names = input.GetPlayerNames();
+            string[] names = input.GetPlayerNames(this);
             this.Player1 = new Player(names[0], Player1Marker);
             this.Player2 = new Player(names[1], Player2Marker);
         }
