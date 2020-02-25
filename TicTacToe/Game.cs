@@ -4,6 +4,8 @@ namespace TicTacToe
 {
     public class Game
     {
+        public char Player1Marker = 'X';
+        public char Player2Marker = 'O';
         public Game()
         {
             this.Board = new char[] { ' ', ' ', ' ', ' ', ' ', ' ',  ' ', ' ', ' ' };
@@ -22,8 +24,8 @@ namespace TicTacToe
         public void AddPlayers(IUserInput input)
         {
             string[] names = input.GetPlayerNames();
-            this.Player1 = new Player(names[0], 'X');
-            this.Player2 = new Player(names[1], 'O');
+            this.Player1 = new Player(names[0], Player1Marker);
+            this.Player2 = new Player(names[1], Player2Marker);
         }
 
         public void DisplayCurrentBoard(IOutput output)

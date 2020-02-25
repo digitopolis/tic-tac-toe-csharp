@@ -6,9 +6,9 @@ namespace TicTacToe.Tests
 {
     public class GameTests
     {
-        Game game = new Game();
-        Player player1 = new Player("first", 'X');
-        Player player2 = new Player("second", 'O');
+        static Game game = new Game();
+        Player player1 = new Player("first", game.Player1Marker);
+        Player player2 = new Player("second", game.Player2Marker);
 
         [Fact]
         public void CanCreateNewGame() => Assert.IsType<Game>(game);
@@ -38,7 +38,7 @@ namespace TicTacToe.Tests
         //When player picks a valid space
             game.MakeMove(2, game.Player1.Marker);
         //Then Board is updated with player's marker
-            Assert.Equal('X', game.Board[1]);
+            Assert.Equal(game.Player1Marker, game.Board[1]);
         }
 
         [Fact]
