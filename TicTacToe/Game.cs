@@ -9,7 +9,6 @@ namespace TicTacToe
         public Game()
         {
             this.Board = new char[] { ' ', ' ', ' ', ' ', ' ', ' ',  ' ', ' ', ' ' };
-            this.CurrentPlayer = this.Player1;
         }
 
         public char[] Board { get; set; }
@@ -28,6 +27,7 @@ namespace TicTacToe
             string[] names = input.GetPlayerNames(this);
             this.Player1 = new Player(names[0], Player1Marker);
             this.Player2 = new Player(names[1], Player2Marker);
+            this.CurrentPlayer = this.Player1;
         }
 
         public void DisplayCurrentBoard(IOutput output)
@@ -35,9 +35,9 @@ namespace TicTacToe
             output.PrintBoard(this.Board);
         }
 
-        public int NextPlayerMove(IUserInput input, Player player)
+        public int NextPlayerMove(IUserInput input)
         {
-            int move = input.GetPlayerMove(player);
+            int move = input.GetPlayerMove(this.CurrentPlayer);
             return move;
         }
     }
