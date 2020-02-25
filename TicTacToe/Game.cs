@@ -9,11 +9,13 @@ namespace TicTacToe
         public Game()
         {
             this.Board = new char[] { ' ', ' ', ' ', ' ', ' ', ' ',  ' ', ' ', ' ' };
+            this.CurrentPlayer = this.Player1;
         }
 
         public char[] Board { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
+        public Player CurrentPlayer { get; set; }
 
         public void MakeMove(int space, char marker)
         {
@@ -33,9 +35,10 @@ namespace TicTacToe
             output.PrintBoard(this.Board);
         }
 
-        public int NextPlayerMove(IUserInput input)
+        public int NextPlayerMove(IUserInput input, Player player)
         {
-            throw new NotImplementedException("implement the move one");
+            int move = input.GetPlayerMove(player);
+            return move;
         }
     }
 }
