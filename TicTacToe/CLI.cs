@@ -28,7 +28,13 @@ namespace TicTacToe
         {
             Console.WriteLine($"{player.Name}, please select a space on the board");
             string playerInput = Console.ReadLine();
-            return Int32.Parse(playerInput);
+            int playerMove;
+            while (!Int32.TryParse(playerInput, out playerMove))
+            {
+                Console.WriteLine("Please enter a number between 1-9");
+                playerInput = Console.ReadLine();
+            }
+            return playerMove;
         }
 
         public void PrintBoard(char[] board)
