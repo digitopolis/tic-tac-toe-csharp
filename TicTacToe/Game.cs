@@ -8,7 +8,7 @@ namespace TicTacToe
         public char Player2Marker = 'O';
         public Game()
         {
-            this.Board = new char[] { ' ', ' ', ' ', ' ', ' ', ' ',  ' ', ' ', ' ' };
+            this.Board = new char[] { '1', '2', '3', '4', '5', '6',  '7', '8', '9' };
         }
 
         public char[] Board { get; set; }
