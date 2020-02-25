@@ -36,10 +36,10 @@ namespace TicTacToe.Tests
         }
 
         [Theory]
-        [InlineData(1)]
-        [InlineData(4)]
-        [InlineData(9)]
-        public void CLICanValidateInput(int input)
+        [InlineData("1")]
+        [InlineData("4")]
+        [InlineData("9")]
+        public void CLICanValidateInput(string input)
         {
             Assert.True(cli.IsValidInput(input));
         }
