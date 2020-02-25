@@ -47,5 +47,12 @@ namespace TicTacToe.Tests
             game.AddPlayers(new FakeUserInput());
             Assert.Equal("player 1 name", game.Player1.Name);
         }
+
+        [Fact]
+        public void GameCanGetPlayerMove()
+        {
+            int move = game.GetPlayerMove(new FakeUserInput());
+            Assert.Equal(4, move);
+        }
     }
 }
