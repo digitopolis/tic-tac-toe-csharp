@@ -35,5 +35,10 @@ namespace TicTacToe.Tests
             string[] fakeNames = { "player 1 name", "player 2 name" };
             return fakeNames;
         }
+
+        public int GetPlayerMove(Player player)
+        {
+            return 4;
+        }
     }
 }
