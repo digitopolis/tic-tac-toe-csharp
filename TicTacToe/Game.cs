@@ -40,10 +40,5 @@ namespace TicTacToe
             int move = input.GetPlayerMove(this.CurrentPlayer);
             return move;
         }
-
-        public bool IsValidInput(int move)
-        {
-            return move > 0 && move <= 9 ? true : false;
-        }
     }
 }

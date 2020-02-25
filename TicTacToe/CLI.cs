@@ -40,6 +40,11 @@ namespace TicTacToe
             this.LogToConsole(horizDivider);
             this.LogToConsole($"   {board[6]}   |   {board[7]}   |   {board[8]} ");
         }
+
+        public bool IsValidInput(int move)
+        {
+            return move > 0 && move <= 9 ? true : false;
+        }
     }
 
     public interface IUserInput
