@@ -6,7 +6,8 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CLI cli = new CLI();
+            cli.LogToConsole("Welcome to Tic Tac Toe!");
         }
     }
 }
