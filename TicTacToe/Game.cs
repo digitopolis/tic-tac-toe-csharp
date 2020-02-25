@@ -8,7 +8,7 @@ namespace TicTacToe
         public char Player2Marker = 'O';
         public Game()
         {
-            this.Board = new char[] { '1', '2', '3', '4', '5', '6',  '7', '8', '9' };
+            this.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         }
 
         public char[] Board { get; set; }
@@ -39,6 +39,11 @@ namespace TicTacToe
         {
             int move = input.GetPlayerMove(this.CurrentPlayer);
             return move;
+        }
+
+        public bool IsValidInput(int move)
+        {
+            return move > 0 && move <= 9 ? true : false;
         }
     }
 }

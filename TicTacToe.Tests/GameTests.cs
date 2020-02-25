@@ -54,5 +54,14 @@ namespace TicTacToe.Tests
             int move = game.NextPlayerMove(new FakeUserInput());
             Assert.Equal(4, move);
         }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(4)]
+        [InlineData(10)]
+        public void GameCanValidateInput(int input)
+        {
+            Assert.True(game.IsValidInput(input));
+        }
     }
 }
