@@ -27,4 +27,13 @@ namespace TicTacToe.Tests
             stringWriter.Dispose();
         }
     }
+
+    public class FakeUserInput : IUserInput
+    {
+        public string[] GetPlayerNames()
+        {
+            string[] fakeNames = { "player 1 name", "player 2 name" };
+            return fakeNames;
+        }
+    }
 }
