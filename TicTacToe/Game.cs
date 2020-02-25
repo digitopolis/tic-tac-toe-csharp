@@ -33,7 +33,7 @@ namespace TicTacToe
             output.PrintBoard(this.Board);
         }
 
-        public int GetPlayerMove(IUserInput input)
+        public int NextPlayerMove(IUserInput input)
         {
             throw new NotImplementedException("implement the move one");
         }

@@ -51,7 +51,7 @@ namespace TicTacToe.Tests
         [Fact]
         public void GameCanGetPlayerMove()
         {
-            int move = game.GetPlayerMove(new FakeUserInput());
+            int move = game.NextPlayerMove(new FakeUserInput());
             Assert.Equal(4, move);
         }
     }
