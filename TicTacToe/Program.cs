@@ -11,6 +11,11 @@ namespace TicTacToe
             Game game = new Game();
             cli.WelcomeToGame();
             game.AddPlayers(cli);
+            PlayerTurn(game);
+        }
+
+        static void PlayerTurn(Game game)
+        {
             game.DisplayCurrentBoard(cli);
             int nextMove = game.NextPlayerMove(cli);
             while (!game.SpaceIsAvailable(nextMove))
@@ -19,6 +24,8 @@ namespace TicTacToe
                 nextMove = game.NextPlayerMove(cli);
             }
             cli.LogToConsole($"{game.CurrentPlayer.Name} selected {nextMove}");
+            game.MakeMove(nextMove);
+            game.SwitchCurrentPlayer();
         }
     }
 }
