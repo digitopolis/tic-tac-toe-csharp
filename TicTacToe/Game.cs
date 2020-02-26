@@ -49,7 +49,7 @@ namespace TicTacToe
 
         public void SwitchCurrentPlayer()
         {
-            throw new NotImplementedException("switch!!!");
+            CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
         }
     }
 }

@@ -73,6 +73,8 @@ namespace TicTacToe.Tests
             Assert.Equal(player1, game.CurrentPlayer);
             game.SwitchCurrentPlayer();
             Assert.Equal(player2, game.CurrentPlayer);
+            game.SwitchCurrentPlayer();
+            Assert.Equal(player1, game.CurrentPlayer);
         }
     }
 }
