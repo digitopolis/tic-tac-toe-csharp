@@ -51,8 +51,16 @@ namespace TicTacToe.Tests
         [Fact]
         public void GameCanGetPlayerMove()
         {
-            int move = game.NextPlayerMove(new FakeUserInput());
+            int move = game.NextPlayerMove(new FakeUserInput(), new CLI());
             Assert.Equal(4, move);
+        }
+
+        [Fact]
+        public void GameCanCheckMoveAvailability()
+        {
+            game.Board = new char[] { 'X', '2', 'O', 'O', '5', '6', 'X', '8', '9' };
+            Assert.True(game.SpaceIsAvailable(1));
+            Assert.False(game.SpaceIsAvailable(3));
         }
 
     }

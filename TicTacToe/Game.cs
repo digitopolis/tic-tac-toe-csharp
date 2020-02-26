@@ -38,12 +38,17 @@ namespace TicTacToe
         public int NextPlayerMove(IUserInput input, IOutput output)
         {
             int move = input.GetPlayerMove(this.CurrentPlayer);
-            while(Board[move - 1] == Player1Marker || Board[move - 1] == Player2Marker)
-            {
-                output.LogToConsole("Please select an unoccupied space on the board");
-                move = input.GetPlayerMove(this.CurrentPlayer);
-            }
+            // while(Board[move - 1] == Player1Marker || Board[move - 1] == Player2Marker)
+            // {
+            //     // output.LogToConsole("Please select an unoccupied space on the board");
+            //     move = input.GetPlayerMove(this.CurrentPlayer);
+            // }
             return move;
+        }
+
+        public bool SpaceIsAvailable(int index)
+        {
+            return Board[index] != Player1Marker && Board[index] != Player2Marker;
         }
     }
 }
