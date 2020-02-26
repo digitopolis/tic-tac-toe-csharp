@@ -9,12 +9,14 @@ namespace TicTacToe
         public Game()
         {
             this.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            this.IsOver = false;
         }
 
         public char[] Board { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
         public Player CurrentPlayer { get; set; }
+        public bool IsOver { get; set; }
 
         public void MakeMove(int space)
         {
