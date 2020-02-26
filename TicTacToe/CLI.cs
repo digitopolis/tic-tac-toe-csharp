@@ -63,5 +63,6 @@ namespace TicTacToe
     public interface IOutput
     {
         void PrintBoard(char[] board);
+        void LogToConsole(string message);
     }
 }

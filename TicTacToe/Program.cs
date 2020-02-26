@@ -12,7 +12,7 @@ namespace TicTacToe
             cli.WelcomeToGame();
             game.AddPlayers(cli);
             game.DisplayCurrentBoard(cli);
-            int nextMove = game.NextPlayerMove(cli);
+            int nextMove = game.NextPlayerMove(cli, cli);
         }
     }
 }
