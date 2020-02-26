@@ -16,10 +16,10 @@ namespace TicTacToe
         public Player Player2 { get; set; }
         public Player CurrentPlayer { get; set; }
 
-        public void MakeMove(int space, char marker)
+        public void MakeMove(int space)
         {
             int index = space - 1;
-            this.Board[index] = marker;
+            this.Board[index] = this.CurrentPlayer.Marker;
         }
 
         public void AddPlayers(IUserInput input)
