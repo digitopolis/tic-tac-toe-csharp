@@ -46,5 +46,10 @@ namespace TicTacToe
             int index = space - 1;
             return Board[index] != Player1Marker && Board[index] != Player2Marker;
         }
+
+        public void SwitchCurrentPlayer()
+        {
+            throw new NotImplementedException("switch!!!");
+        }
     }
 }
