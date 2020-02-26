@@ -41,8 +41,9 @@ namespace TicTacToe
             return move;
         }
 
-        public bool SpaceIsAvailable(int index)
+        public bool SpaceIsAvailable(int space)
         {
+            int index = space - 1;
             return Board[index] != Player1Marker && Board[index] != Player2Marker;
         }
     }

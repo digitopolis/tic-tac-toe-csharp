@@ -13,7 +13,7 @@ namespace TicTacToe
             game.AddPlayers(cli);
             game.DisplayCurrentBoard(cli);
             int nextMove = game.NextPlayerMove(cli);
-            while (!game.SpaceIsAvailable(nextMove -1))
+            while (!game.SpaceIsAvailable(nextMove))
             {
                 cli.LogToConsole("Sorry, that space isn't available");
                 nextMove = game.NextPlayerMove(cli);
