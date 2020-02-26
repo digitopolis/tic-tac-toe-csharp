@@ -77,5 +77,22 @@ namespace TicTacToe.Tests
             game.SwitchCurrentPlayer();
             Assert.Equal(player1, game.CurrentPlayer);
         }
+
+        [Fact]
+        public void GameCanDetermineIfOver()
+        {
+            char[] winnerBoard = { 'X', 'X', 'X', 'O', '5', '6', 'O', '8', '9' };   // X has three on top row
+            char[] drawBoard = { 'X', '2', 'O', 'O', '5', '6', 'X', '8', '9' };     // full board with no winner
+            char[] inPlayBoard = { 'X', '2', 'O', 'O', '5', '6', 'X', '8', '9' };   // board not yet full, no winner yet
+
+            game.Board = winnerBoard;
+            Assert.True(game.IsOver());
+
+            game.Board = drawBoard;
+            Assert.True(game.IsOver());
+
+            game.Board = inPlayBoard;
+            Assert.False(game.IsOver());
+        }
     }
 }

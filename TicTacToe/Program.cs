@@ -11,7 +11,7 @@ namespace TicTacToe
             Game game = new Game();
             cli.WelcomeToGame();
             game.AddPlayers(cli);
-            while (!game.IsOver)
+            while (!game.IsOver())
             {
                 PlayerTurn(game);
             }

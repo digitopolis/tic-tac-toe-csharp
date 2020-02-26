@@ -9,14 +9,23 @@ namespace TicTacToe
         public Game()
         {
             this.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            this.IsOver = false;
+            this.WinningCombinations = new bool[] {
+                Board[0] == Board[1] && Board[1] == Board[2],
+                Board[3] == Board[4] && Board[4] == Board[5],
+                Board[6] == Board[7] && Board[7] == Board[8],
+                Board[0] == Board[3] && Board[3] == Board[6],
+                Board[1] == Board[4] && Board[4] == Board[7],
+                Board[2] == Board[5] && Board[5] == Board[8],
+                Board[0] == Board[4] && Board[4] == Board[8],
+                Board[2] == Board[4] && Board[4] == Board[6],
+            };
         }
 
         public char[] Board { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
         public Player CurrentPlayer { get; set; }
-        public bool IsOver { get; set; }
+        public bool[] WinningCombinations { get; }
 
         public void MakeMove(int space)
         {
@@ -52,6 +61,15 @@ namespace TicTacToe
         public void SwitchCurrentPlayer()
         {
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
+        }
+
+        public bool IsOver()
+        {
+            throw new NotImplementedException("implement is over!!");
+            // A player has three in a row
+
+            // Board is full, no winner
+            // Board is not full, no winner
         }
     }
 }
