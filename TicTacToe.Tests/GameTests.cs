@@ -35,8 +35,9 @@ namespace TicTacToe.Tests
         {
         //Given a player has joined a game
             game.Player1 = player1;
+            game.CurrentPlayer = player1;
         //When player picks a valid space
-            game.MakeMove(2, game.Player1.Marker);
+            game.MakeMove(2);
         //Then Board is updated with player's marker
             Assert.Equal(game.Player1Marker, game.Board[1]);
         }
