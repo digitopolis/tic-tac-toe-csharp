@@ -91,8 +91,8 @@ namespace TicTacToe.Tests
             game.Board = drawBoard;
             Assert.True(game.IsOver());
 
-            // game.Board = inPlayBoard;
-            // Assert.False(game.IsOver());
+            game.Board = inPlayBoard;
+            Assert.False(game.IsOver());
         }
     }
 }
