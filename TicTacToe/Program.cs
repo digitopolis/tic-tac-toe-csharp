@@ -15,6 +15,7 @@ namespace TicTacToe
             {
                 PlayerTurn(game);
             }
+            cli.LogToConsole(game.DisplayResult());
         }
 
         static void PlayerTurn(Game game)
@@ -28,7 +29,10 @@ namespace TicTacToe
             }
             cli.LogToConsole($"{game.CurrentPlayer.Name} selected {nextMove}");
             game.MakeMove(nextMove);
-            game.SwitchCurrentPlayer();
+            if (!game.IsOver())
+            {
+                game.SwitchCurrentPlayer();
+            }
         }
     }
 }

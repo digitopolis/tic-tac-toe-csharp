@@ -86,11 +86,13 @@ namespace TicTacToe
             // A player has three in a row
             if (WinningCombinations().Contains(true))
             {
+                this.State = "WIN";
                 return true;
             }
             // Board is full, no winner
             else if (BoardIsFull())
             {
+                this.State = "DRAW";
                 return true;
             }
             // Board is not full, no winner
