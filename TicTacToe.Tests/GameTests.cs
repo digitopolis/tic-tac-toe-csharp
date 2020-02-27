@@ -101,9 +101,17 @@ namespace TicTacToe.Tests
             Player matt = new Player("Matt", game.Player1Marker);
             game.Player1 = matt;
             game.CurrentPlayer = matt;
+
             string winResult = "Congratulations Matt, you won!";
-            string result = game.DisplayResult("WIN");
+            game.State = "WIN";
+
+            string result = game.DisplayResult();
             Assert.Contains(winResult, result);
+
+            string drawResult = "Game ended in a draw.";
+            game.State = "DRAW";
+            result = game.DisplayResult();
+            Assert.Contains(drawResult, result);
         }
     }
 }

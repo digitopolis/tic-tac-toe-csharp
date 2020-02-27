@@ -10,12 +10,14 @@ namespace TicTacToe
         public Game()
         {
             this.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            this.State = "";
         }
 
         public char[] Board { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
         public Player CurrentPlayer { get; set; }
+        public string State { get; set; }
 
         public void MakeMove(int space)
         {
@@ -95,18 +97,21 @@ namespace TicTacToe
             return false;
         }
 
-        public string DisplayResult(string condition)
+        public string DisplayResult()
         {
             string result = "";
-            switch (condition)
+            switch (this.State)
             {
                 case "WIN":
                     result = $"Congratulations {this.CurrentPlayer.Name}, you won!";
                     break;
+                case "DRAW":
+                    result = "Game ended in a draw.";
+                    break;
                 default:
                     break;
             }
-            return result;
+            return $"Game over! {result}";
         }
     }
 }
