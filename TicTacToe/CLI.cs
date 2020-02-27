@@ -24,6 +24,13 @@ namespace TicTacToe
             return names;
         }
 
+        public int GetPlayerMove(Player player)
+        {
+            Console.WriteLine($"{player.Name}, please select a space on the board");
+            string playerInput = Console.ReadLine();
+            return Int32.Parse(playerInput);
+        }
+
         public void PrintBoard(char[] board)
         {
             string horizDivider = "  - - -+- - - -+- - -";
@@ -38,6 +45,7 @@ namespace TicTacToe
     public interface IUserInput
     {
         string[] GetPlayerNames(Game game);
+        int GetPlayerMove(Player player);
     }
 
     public interface IOutput
