@@ -48,6 +48,18 @@ namespace TicTacToe
             return Board[index] != Player1Marker && Board[index] != Player2Marker;
         }
 
+        public bool BoardIsFull()
+        {
+            for ( int i = 1; i < this.Board.Length + 1; i++ )
+            {
+                if (SpaceIsAvailable(i))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public void SwitchCurrentPlayer()
         {
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
@@ -75,6 +87,10 @@ namespace TicTacToe
                 return true;
             }
             // Board is full, no winner
+            else if (BoardIsFull())
+            {
+                return true;
+            }
             // Board is not full, no winner
             return false;
         }
