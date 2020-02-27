@@ -28,6 +28,12 @@ namespace TicTacToe
         {
             Console.WriteLine($"{player.Name}, please select a space on the board");
             string playerInput = Console.ReadLine();
+            while (!IsValidInput(playerInput))
+            {
+                Console.WriteLine("Please enter a number between 1-9");
+                playerInput = Console.ReadLine();
+            }
+            Console.WriteLine($"You selected {playerInput}");
             return Int32.Parse(playerInput);
         }
 
@@ -40,6 +46,12 @@ namespace TicTacToe
             this.LogToConsole(horizDivider);
             this.LogToConsole($"   {board[6]}   |   {board[7]}   |   {board[8]} ");
         }
+
+        public bool IsValidInput(string input)
+        {
+            int number;
+            return Int32.TryParse(input, out number) && number > 0 && number <= 9;
+        }
     }
 
     public interface IUserInput
@@ -51,5 +63,6 @@ namespace TicTacToe
     public interface IOutput
     {
         void PrintBoard(char[] board);
+        void LogToConsole(string message);
     }
 }

@@ -6,11 +6,11 @@ namespace TicTacToe.Tests
 {
     public class CLITests
     {
+        CLI cli = new CLI();
 
         [Fact]
         public void TestLogToConsole()
         {
-            var cli = new CLI();
             string message = "test message";
             var currentConsoleOut = Console.Out;
             using (var consoleOutput = new ConsoleOutput())
@@ -26,7 +26,6 @@ namespace TicTacToe.Tests
         [InlineData("       |       |   O ")]
         public void TestPrintCurrentBoard(string line)
         {
-            CLI cli = new CLI();
             char[] board = { ' ', 'X', ' ', ' ', ' ', 'O',  'X', ' ', ' ' };
             var currentConsoleOut = Console.Out;
             using (var consoleOutput = new ConsoleOutput())
@@ -34,6 +33,15 @@ namespace TicTacToe.Tests
               cli.PrintBoard(board);
               Assert.Contains(line, consoleOutput.GetOutput());
             }
+        }
+
+        [Theory]
+        [InlineData("1")]
+        [InlineData("4")]
+        [InlineData("9")]
+        public void CLICanValidateInput(string input)
+        {
+            Assert.True(cli.IsValidInput(input));
         }
     }
 }
