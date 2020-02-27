@@ -94,5 +94,19 @@ namespace TicTacToe
             // Board is not full, no winner
             return false;
         }
+
+        public string DisplayResult(string condition)
+        {
+            string result = "";
+            switch (condition)
+            {
+                case "WIN":
+                    result = $"Congratulations {this.CurrentPlayer.Name}, you won!";
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
     }
 }

@@ -94,5 +94,16 @@ namespace TicTacToe.Tests
             game.Board = inPlayBoard;
             Assert.False(game.IsOver());
         }
+
+        [Fact]
+        public void GameCanDisplayResult()
+        {
+            Player matt = new Player("Matt", game.Player1Marker);
+            game.Player1 = matt;
+            game.CurrentPlayer = matt;
+            string winResult = "Congratulations Matt, you won!";
+            string result = game.DisplayResult("WIN");
+            Assert.Contains(winResult, result);
+        }
     }
 }
