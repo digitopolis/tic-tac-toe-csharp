@@ -35,8 +35,9 @@ namespace TicTacToe.Tests
         {
         //Given a player has joined a game
             game.Player1 = player1;
+            game.CurrentPlayer = player1;
         //When player picks a valid space
-            game.MakeMove(2, game.Player1.Marker);
+            game.MakeMove(2);
         //Then Board is updated with player's marker
             Assert.Equal(game.Player1Marker, game.Board[1]);
         }
@@ -59,9 +60,22 @@ namespace TicTacToe.Tests
         public void GameCanCheckMoveAvailability()
         {
             game.Board = new char[] { 'X', '2', 'O', 'O', '5', '6', 'X', '8', '9' };
-            Assert.True(game.SpaceIsAvailable(1));
+            Assert.True(game.SpaceIsAvailable(2));
             Assert.False(game.SpaceIsAvailable(3));
         }
 
+        [Fact]
+        public void GameCanAlternatePlayers()
+        {
+            game.Player1 = player1;
+            game.Player2 = player2;
+            game.CurrentPlayer = player1;
+
+            Assert.Equal(player1, game.CurrentPlayer);
+            game.SwitchCurrentPlayer();
+            Assert.Equal(player2, game.CurrentPlayer);
+            game.SwitchCurrentPlayer();
+            Assert.Equal(player1, game.CurrentPlayer);
+        }
     }
 }

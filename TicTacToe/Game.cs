@@ -9,17 +9,19 @@ namespace TicTacToe
         public Game()
         {
             this.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            this.IsOver = false;
         }
 
         public char[] Board { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
         public Player CurrentPlayer { get; set; }
+        public bool IsOver { get; set; }
 
-        public void MakeMove(int space, char marker)
+        public void MakeMove(int space)
         {
             int index = space - 1;
-            this.Board[index] = marker;
+            this.Board[index] = this.CurrentPlayer.Marker;
         }
 
         public void AddPlayers(IUserInput input)
@@ -45,6 +47,11 @@ namespace TicTacToe
         {
             int index = space - 1;
             return Board[index] != Player1Marker && Board[index] != Player2Marker;
+        }
+
+        public void SwitchCurrentPlayer()
+        {
+            CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
         }
     }
 }
