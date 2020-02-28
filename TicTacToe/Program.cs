@@ -9,22 +9,12 @@ namespace TicTacToe
 
         static void Main(string[] args)
         {
-            // Game game = new Game();
-            // cli.WelcomeToGame();
-            // game.AddPlayers(cli);
-            // string play = "Y";
             while (play == "Y")
             {
                 Game game = StartNewGame();
                 Play(game);
                 play = PlayAnotherGame();
             }
-
-            // while (!game.IsOver())
-            // {
-            //     PlayerTurn(game);
-            // }
-            // cli.LogToConsole(game.DisplayResult());
         }
 
         static Game StartNewGame()
@@ -60,7 +50,6 @@ namespace TicTacToe
             }
             game.DisplayCurrentBoard(cli);
             cli.LogToConsole(game.DisplayResult());
-            // play = PlayAnotherGame();
         }
 
         static string PlayAnotherGame()
