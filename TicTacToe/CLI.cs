@@ -45,7 +45,7 @@ namespace TicTacToe
                 Console.WriteLine("Please enter 'Y' to play again or 'N' to quit");
                 input = Console.ReadLine();
             }
-            return input;
+            return input.ToUpper();
         }
 
         public void PrintBoard(char[] board)

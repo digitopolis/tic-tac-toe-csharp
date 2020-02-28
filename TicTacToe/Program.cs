@@ -5,16 +5,21 @@ namespace TicTacToe
     class Program
     {
         static CLI cli = new CLI();
-        static string play = "Y";
+        public static string play = "Y";
 
         static void Main(string[] args)
         {
             // Game game = new Game();
             // cli.WelcomeToGame();
             // game.AddPlayers(cli);
+            // string play = "Y";
+            while (play == "Y")
+            {
+                Game game = StartNewGame();
+                Play(game);
+                play = PlayAnotherGame();
+            }
 
-            Game game = StartNewGame();
-            Play(game);
             // while (!game.IsOver())
             // {
             //     PlayerTurn(game);
@@ -53,10 +58,12 @@ namespace TicTacToe
             {
                 PlayerTurn(game);
             }
+            game.DisplayCurrentBoard(cli);
             cli.LogToConsole(game.DisplayResult());
+            // play = PlayAnotherGame();
         }
 
-        static string PlayNewGame()
+        static string PlayAnotherGame()
         {
             cli.LogToConsole("Would you like to play another game?\nEnter 'Y' to play again or 'N' to quit:");
             string userSelection = cli.GetMenuSelection();
