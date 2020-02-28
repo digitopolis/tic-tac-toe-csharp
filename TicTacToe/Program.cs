@@ -5,6 +5,7 @@ namespace TicTacToe
     class Program
     {
         static CLI cli = new CLI();
+        static string play = "Y";
 
         static void Main(string[] args)
         {
@@ -33,6 +34,13 @@ namespace TicTacToe
             {
                 game.SwitchCurrentPlayer();
             }
+        }
+
+        static string PlayNewGame()
+        {
+            cli.LogToConsole("Would you like to play another game?\nEnter 'Y' to play again or 'N' to quit:");
+            string userSelection = cli.GetMenuSelection();
+            return userSelection;
         }
     }
 }
