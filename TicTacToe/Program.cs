@@ -34,7 +34,7 @@ namespace TicTacToe
                 cli.LogToConsole("Sorry, that space isn't available");
                 nextMove = game.NextPlayerMove(cli);
             }
-            cli.LogToConsole($"{game.CurrentPlayer.Name} selected {nextMove}");
+            cli.LogToConsole($"\n{game.CurrentPlayer.Name} selected {nextMove}");
             game.MakeMove(nextMove);
             if (!game.IsOver())
             {

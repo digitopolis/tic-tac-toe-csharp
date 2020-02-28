@@ -11,7 +11,7 @@ namespace TicTacToe
 
         public void WelcomeToGame()
         {
-            this.LogToConsole("Welcome to Tic Tac Toe!\n\nTo start a new game, please enter both players' names\n\n");
+            this.LogToConsole("Welcome to Tic Tac Toe!\n\nTo start a new game, please enter both players' names\n");
         }
 
         public string[] GetPlayerNames(Game game)
@@ -33,7 +33,7 @@ namespace TicTacToe
                 Console.WriteLine("Please enter a number between 1-9");
                 playerInput = Console.ReadLine();
             }
-            Console.WriteLine($"You selected {playerInput}");
+            // Console.WriteLine($"You selected {playerInput}");
             return Int32.Parse(playerInput);
         }
 
@@ -51,11 +51,13 @@ namespace TicTacToe
         public void PrintBoard(char[] board)
         {
             string horizDivider = "  - - -+- - - -+- - -";
+            this.LogToConsole("");
             this.LogToConsole($"   {board[0]}   |   {board[1]}   |   {board[2]} ");
             this.LogToConsole(horizDivider);
             this.LogToConsole($"   {board[3]}   |   {board[4]}   |   {board[5]} ");
             this.LogToConsole(horizDivider);
             this.LogToConsole($"   {board[6]}   |   {board[7]}   |   {board[8]} ");
+            this.LogToConsole("");
         }
 
         public bool IsValidInput(string input, string inputFor)
