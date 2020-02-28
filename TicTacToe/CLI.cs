@@ -28,13 +28,24 @@ namespace TicTacToe
         {
             Console.WriteLine($"{player.Name}, please select a space on the board");
             string playerInput = Console.ReadLine();
-            while (!IsValidInput(playerInput))
+            while (!IsValidInput(playerInput, "MOVE"))
             {
                 Console.WriteLine("Please enter a number between 1-9");
                 playerInput = Console.ReadLine();
             }
             Console.WriteLine($"You selected {playerInput}");
             return Int32.Parse(playerInput);
+        }
+
+        public string GetMenuSelection()
+        {
+            string input = Console.ReadLine();
+            while (!IsValidInput(input, "MENU"))
+            {
+                Console.WriteLine("Please enter 'Y' to play again or 'N' to quit");
+                input = Console.ReadLine();
+            }
+            return input;
         }
 
         public void PrintBoard(char[] board)
@@ -47,10 +58,19 @@ namespace TicTacToe
             this.LogToConsole($"   {board[6]}   |   {board[7]}   |   {board[8]} ");
         }
 
-        public bool IsValidInput(string input)
+        public bool IsValidInput(string input, string inputFor)
         {
-            int number;
-            return Int32.TryParse(input, out number) && number > 0 && number <= 9;
+            switch (inputFor)
+            {
+                case "MOVE":
+                    int number;
+                    return Int32.TryParse(input, out number) && number > 0 && number <= 9;
+                case "MENU":
+                    return input.ToUpper() == "Y" || input.ToUpper() == "N" ? true : false;
+                default:
+                    return false;
+            }
+            
         }
     }
 
