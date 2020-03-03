@@ -24,6 +24,7 @@ namespace TicTacToe
                         game.Board[index] = char.Parse(s.ToString());
                         return s;
                     }
+                    game.Board[index] = char.Parse(s.ToString());
                 }
             }
             return -1;
