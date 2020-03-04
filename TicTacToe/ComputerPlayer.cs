@@ -29,5 +29,17 @@ namespace TicTacToe
             }
             return -1;
         }
+        public int PickRandomSpace(Game game)
+        {
+            int randomSpace = rand.Next(1, 10);
+            if (game.SpaceIsAvailable(randomSpace))
+            {
+                return randomSpace;
+            }
+            else
+            {
+                return PickRandomSpace(game);
+            }
+        }
     }
 }
