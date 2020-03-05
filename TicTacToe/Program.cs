@@ -35,12 +35,6 @@ namespace TicTacToe
                 nextMove = game.NextPlayerMove(cli);
             }
             FinishTurn(game, nextMove);
-            // cli.LogToConsole($"\n{game.CurrentPlayer.Name} selected {nextMove}");
-            // game.MakeMove(nextMove);
-            // if (!game.IsOver())
-            // {
-            //     game.SwitchCurrentPlayer();
-            // }
         }
 
         static void FinishTurn(Game game, int move)

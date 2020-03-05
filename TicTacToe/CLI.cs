@@ -41,7 +41,6 @@ namespace TicTacToe
                 Console.WriteLine("Please enter a number between 1-9");
                 playerInput = Console.ReadLine();
             }
-            // Console.WriteLine($"You selected {playerInput}");
             return Int32.Parse(playerInput);
         }
 
