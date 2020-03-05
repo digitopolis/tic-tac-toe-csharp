@@ -48,6 +48,18 @@ namespace TicTacToe
             return input.ToUpper();
         }
 
+        public int GetNumberOfPlayers()
+        {
+            LogToConsole("Please enter the number of players (1 or 2)");
+            string input = Console.ReadLine();
+            while (!IsValidInput(input, "PLAYERS"))
+            {
+                Console.WriteLine("Please enter '1' to play against the computer or '2' for a two person game");
+                input = Console.ReadLine();
+            }
+            return Int32.Parse(input);
+        }
+
         public void PrintBoard(char[] board)
         {
             string horizDivider = "  - - -+- - - -+- - -";

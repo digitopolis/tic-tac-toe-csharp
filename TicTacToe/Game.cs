@@ -14,6 +14,7 @@ namespace TicTacToe
         }
 
         public char[] Board { get; set; }
+        public int NumberOfPlayers { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
         public Player CurrentPlayer { get; set; }
@@ -27,9 +28,14 @@ namespace TicTacToe
 
         public void AddPlayers(IUserInput input)
         {
+            this.NumberOfPlayers = input.GetNumberOfPlayers();
             string[] names = input.GetPlayerNames(this);
             this.Player1 = new Player(names[0], Player1Marker);
             this.Player2 = new Player(names[1], Player2Marker);
+            if (this.NumberOfPlayers == 1)
+            {
+                this.ComputerPlayer = new HardComputerPlayer();
+            }
             this.CurrentPlayer = this.Player1;
         }
 
