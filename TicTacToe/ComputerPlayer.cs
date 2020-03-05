@@ -28,6 +28,7 @@ namespace TicTacToe
         }
         public int FindBestMove(Game game)
         {
+            int moveToBlock = 0;
             for (int s = 1; s <= game.Board.Length; s++)
             {
                 if (game.SpaceIsAvailable(s))
@@ -43,12 +44,12 @@ namespace TicTacToe
                     if (game.WinningCombinations().Contains(true))
                     {
                         game.Board[index] = char.Parse(s.ToString());
-                        return s;
+                        moveToBlock = s;
                     }
                     game.Board[index] = char.Parse(s.ToString());
                 }
             }
-            return -1;
+            return moveToBlock == 0 ? -1 : moveToBlock;
         }
         public int PickRandomSpace(Game game)
         {
