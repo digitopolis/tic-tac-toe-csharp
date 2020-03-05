@@ -60,9 +60,21 @@ namespace TicTacToe
         {
             LogToConsole("Please enter the number of players (1 or 2)");
             string input = Console.ReadLine();
-            while (!IsValidInput(input, "PLAYERS"))
+            while (!IsValidInput(input, "ONE-OR-TWO"))
             {
                 Console.WriteLine("Please enter '1' to play against the computer or '2' for a two person game");
+                input = Console.ReadLine();
+            }
+            return Int32.Parse(input);
+        }
+
+        public int GetDifficultyLevel()
+        {
+            LogToConsole("Please select the difficulty level (1 for Easy or 2 for Hard)");
+            string input = Console.ReadLine();
+            while (!IsValidInput(input, "ONE-OR-TWO"))
+            {
+                Console.WriteLine("Please enter '1' for an easier opponent or '2' for more of a challenge");
                 input = Console.ReadLine();
             }
             return Int32.Parse(input);
@@ -89,7 +101,7 @@ namespace TicTacToe
                     return Int32.TryParse(input, out number) && number > 0 && number <= 9;
                 case "MENU":
                     return input.ToUpper() == "Y" || input.ToUpper() == "N" ? true : false;
-                case "PLAYERS":
+                case "ONE-OR-TWO":
                     return Int32.TryParse(input, out number) && number > 0 && number <= 2;
                 default:
                     return false;
@@ -103,6 +115,7 @@ namespace TicTacToe
         string[] GetPlayerNames(Game game);
         int GetPlayerMove(Player player);
         int GetNumberOfPlayers();
+        int GetDifficultyLevel();
     }
 
     public interface IOutput

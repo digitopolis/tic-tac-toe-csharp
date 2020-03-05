@@ -113,5 +113,14 @@ namespace TicTacToe.Tests
             result = game.DisplayResult();
             Assert.Contains(drawResult, result);
         }
+
+        [Fact]
+        public void GameSetsDifficultyLevel()
+        {
+            Game game = new Game();
+            game.AddPlayers(new FakeUserInput());
+
+            Assert.IsType<HardComputerPlayer>(game.ComputerPlayer);
+        }
     }
 }

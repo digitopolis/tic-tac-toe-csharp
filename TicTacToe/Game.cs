@@ -35,7 +35,15 @@ namespace TicTacToe
             this.Player2 = new Player(names[1], Player2Marker);
             if (this.NumberOfPlayers == 1)
             {
-                this.ComputerPlayer = new HardComputerPlayer();
+                if (input.GetDifficultyLevel() == 1)
+                {
+                    this.ComputerPlayer = new EasyComputerPlayer();
+                }
+                else
+                {
+                    this.ComputerPlayer = new HardComputerPlayer();
+                }
+                // ComputerPlayer = input.GetDifficultyLevel() == 1 ? new EasyComputerPlayer() : new HardComputerPlayer();
             }
             this.CurrentPlayer = this.Player1;
         }
