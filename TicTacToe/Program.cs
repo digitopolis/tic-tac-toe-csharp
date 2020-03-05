@@ -34,11 +34,31 @@ namespace TicTacToe
                 cli.LogToConsole("Sorry, that space isn't available");
                 nextMove = game.NextPlayerMove(cli);
             }
-            cli.LogToConsole($"\n{game.CurrentPlayer.Name} selected {nextMove}");
-            game.MakeMove(nextMove);
+            FinishTurn(game, nextMove);
+            // cli.LogToConsole($"\n{game.CurrentPlayer.Name} selected {nextMove}");
+            // game.MakeMove(nextMove);
+            // if (!game.IsOver())
+            // {
+            //     game.SwitchCurrentPlayer();
+            // }
+        }
+
+        static void FinishTurn(Game game, int move)
+        {
+            cli.LogToConsole($"\n{game.CurrentPlayer.Name} selected {move}");
+            game.MakeMove(move);
             if (!game.IsOver())
             {
                 game.SwitchCurrentPlayer();
+            }
+        }
+
+        static void ComputerTurn(Game game)
+        {
+            if(!game.IsOver())
+            {
+                int nextMove = game.ComputerPlayer.MakeMove(game);
+                FinishTurn(game, nextMove);
             }
         }
 
@@ -47,6 +67,10 @@ namespace TicTacToe
             while (!game.IsOver())
             {
                 PlayerTurn(game);
+                if (game.NumberOfPlayers == 1)
+                {
+                    ComputerTurn(game);
+                }
             }
             game.DisplayCurrentBoard(cli);
             cli.LogToConsole(game.DisplayResult());

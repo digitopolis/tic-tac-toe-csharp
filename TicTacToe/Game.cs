@@ -17,6 +17,7 @@ namespace TicTacToe
         public int NumberOfPlayers { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
+        public IComputerPlayer ComputerPlayer {get; set; }
         public Player CurrentPlayer { get; set; }
         public string State { get; set; }
 
