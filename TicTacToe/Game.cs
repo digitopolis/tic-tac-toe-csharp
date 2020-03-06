@@ -35,7 +35,8 @@ namespace TicTacToe
             this.Player2 = new Player(names[1], Player2Marker);
             if (this.NumberOfPlayers == 1)
             {
-                if (input.GetDifficultyLevel() == 1)
+                int selectedDifficulty = input.GetDifficultyLevel();
+                if (selectedDifficulty == 1)
                 {
                     this.ComputerPlayer = new EasyComputerPlayer();
                 }
