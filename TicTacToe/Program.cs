@@ -5,6 +5,7 @@ namespace TicTacToe
     class Program
     {
         static CLI cli = new CLI();
+        static BoardFactory boardFactory = new BoardFactory();
         public static string play = "Y";
 
         static void Main(string[] args)
@@ -20,6 +21,7 @@ namespace TicTacToe
         static Game StartNewGame()
         {
             Game game = new Game();
+            game.Board = boardFactory.BuildBoard(3);
             cli.WelcomeToGame();
             game.AddPlayers(cli);
             return game;
@@ -29,7 +31,7 @@ namespace TicTacToe
         {
             game.DisplayCurrentBoard(cli);
             int nextMove = game.NextPlayerMove(cli);
-            while (!game.SpaceIsAvailable(nextMove))
+            while (!game.Board.SpaceIsAvailable(nextMove))
             {
                 cli.LogToConsole("Sorry, that space isn't available");
                 nextMove = game.NextPlayerMove(cli);
