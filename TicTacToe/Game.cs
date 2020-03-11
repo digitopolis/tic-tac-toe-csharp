@@ -9,7 +9,6 @@ namespace TicTacToe
         public string Player2Marker = "O";
         public Game()
         {
-            // this.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             this.State = "";
         }
 
@@ -58,46 +57,14 @@ namespace TicTacToe
             return move;
         }
 
-        // public bool SpaceIsAvailable(int space)
-        // {
-        //     int index = space - 1;
-        //     return Board.gameBoard[index] != Player1Marker && Board.gameBoard[index] != Player2Marker;
-        // }
-
-        // public bool BoardIsFull()
-        // {
-        //     for ( int i = 1; i < this.Board.gameBoard.Length + 1; i++ )
-        //     {
-        //         if (SpaceIsAvailable(i))
-        //         {
-        //             return false;
-        //         }
-        //     }
-        //     return true;
-        // }
-
         public void SwitchCurrentPlayer()
         {
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
         }
 
-        public bool[] WinningCombinations()
-        {
-            return new bool[] {
-                Board.gameBoard[0] == Board.gameBoard[1] && Board.gameBoard[1] == Board.gameBoard[2],
-                Board.gameBoard[3] == Board.gameBoard[4] && Board.gameBoard[4] == Board.gameBoard[5],
-                Board.gameBoard[6] == Board.gameBoard[7] && Board.gameBoard[7] == Board.gameBoard[8],
-                Board.gameBoard[0] == Board.gameBoard[3] && Board.gameBoard[3] == Board.gameBoard[6],
-                Board.gameBoard[1] == Board.gameBoard[4] && Board.gameBoard[4] == Board.gameBoard[7],
-                Board.gameBoard[2] == Board.gameBoard[5] && Board.gameBoard[5] == Board.gameBoard[8],
-                Board.gameBoard[0] == Board.gameBoard[4] && Board.gameBoard[4] == Board.gameBoard[8],
-                Board.gameBoard[2] == Board.gameBoard[4] && Board.gameBoard[4] == Board.gameBoard[6],
-            };
-        }
-
         public bool IsOver()
         {
-            if (WinningCombinations().Contains(true))
+            if (Board.HasWinningCombination())
             {
                 if (NumberOfPlayers == 1 && CurrentPlayer == Player2)
                 {

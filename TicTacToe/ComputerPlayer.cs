@@ -35,13 +35,13 @@ namespace TicTacToe
                 {
                     int index = s - 1;
                     game.Board.gameBoard[index] = game.Player2Marker;
-                    if (game.WinningCombinations().Contains(true))
+                    if (game.Board.HasWinningCombination())
                     {
                         game.Board.gameBoard[index] = s.ToString();
                         return s;
                     }
                     game.Board.gameBoard[index] = game.Player1Marker;
-                    if (game.WinningCombinations().Contains(true))
+                    if (game.Board.HasWinningCombination())
                     {
                         game.Board.gameBoard[index] = s.ToString();
                         moveToBlock = s;

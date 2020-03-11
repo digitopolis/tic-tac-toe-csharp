@@ -85,11 +85,19 @@ namespace TicTacToe.Tests
             Board newBoard = new Board(3);
             game.Board = newBoard;
             
-            string[] winnerBoard = { "X", "X", "X", "O", "5", "6", "O", "8", "9" };   // X has three on top row
+            string[] rowWinnerBoard = { "X", "X", "X", "O", "5", "6", "O", "8", "9" };   // X has three on top row
+            string[] colWinnerBoard = { "O", "2", "X", "O", "X", "6", "O", "8", "9" };
+            string[] diagonalWinnerBoard = { "X", "2", "O", "O", "X", "6", "O", "8", "X" };
             string[] drawBoard = { "X", "X", "O", "O", "O", "X", "X", "O", "X" };     // full board with no winner
             string[] inPlayBoard = { "X", "2", "O", "O", "5", "6", "X", "8", "9" };   // board not yet full, no winner yet
 
-            game.Board.gameBoard = winnerBoard;
+            game.Board.gameBoard = rowWinnerBoard;
+            Assert.True(game.IsOver());
+
+            game.Board.gameBoard = colWinnerBoard;
+            Assert.True(game.IsOver());
+
+            game.Board.gameBoard = diagonalWinnerBoard;
             Assert.True(game.IsOver());
 
             game.Board.gameBoard = drawBoard;

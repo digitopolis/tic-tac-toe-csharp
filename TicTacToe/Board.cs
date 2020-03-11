@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace TicTacToe
 {
@@ -81,17 +82,23 @@ namespace TicTacToe
             gameBoard[index] = marker;
         }
 
-        // public bool HasWinningCombination()
-        // {
-        //     bool[] rowArray = new bool[3];
-        //     bool[] colArray = new bool[3];
-        //     for (int row = 0; row < Length(); row += side)
-        //     {
-        //         for (int col = 0; col < side - 1; col++)
-        //         {
-        //             rowArray[]
-        //         }
-        //     }
-        // }
+        public bool HasWinningCombination()
+        {
+            for (int i = 1; i <= side; i++)
+            {
+                string[] sortedRow = GetRow(i).OrderBy(s => s).ToArray();
+                string[] sortedColumn = GetColumn(i).OrderBy(s => s).ToArray();
+                bool rowWin = sortedRow[0] == sortedRow[side - 1];
+                bool columnWin = sortedColumn[0] == sortedColumn[side - 1];
+                if ( rowWin || columnWin )
+                {
+                    return true;
+                }
+            }
+            string[] sortedDownDiagonal = GetDownDiagonal().OrderBy(s => s).ToArray();
+            string[] sortedUpDiagonal = GetUpDiagonal().OrderBy(s => s).ToArray();
+            bool diagonalWin = sortedDownDiagonal[0] == sortedDownDiagonal[side - 1] || sortedUpDiagonal[0] == sortedUpDiagonal[side - 1];
+            return diagonalWin ? true : false;
+        }
     }
 }
