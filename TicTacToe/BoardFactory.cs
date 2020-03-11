@@ -12,14 +12,9 @@ namespace TicTacToe
 
         public Board PopulateBoard(Board board)
         {
-            int space = 1;
-            for (int row = 0; row < board.side; row++)
+            for (int space = 1; space <= board.gameBoard.Length; space++)
             {
-                for (int col = 0; col < board.side; col++)
-                {
-                    board.gameBoard[ row, col ] = space.ToString();
-                    space++;
-                }
+                board.gameBoard[space - 1] = space.ToString();
             }
             return board;
         }

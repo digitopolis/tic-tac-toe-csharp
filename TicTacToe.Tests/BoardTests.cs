@@ -31,8 +31,8 @@ namespace TicTacToe.Tests
             Board new3x3Board = boardFactory.BuildBoard(3);
             Board new5x5Board = boardFactory.BuildBoard(5);
 
-            Assert.Equal("3", new3x3Board.gameBoard[ 0, 2 ]);
-            Assert.Equal("25", new5x5Board.gameBoard[ 4, 4 ]);
+            Assert.Equal("3", new3x3Board.gameBoard[ 2 ]);
+            Assert.Equal("25", new5x5Board.gameBoard[ 24 ]);
         }
     }
 }
