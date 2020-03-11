@@ -36,6 +36,27 @@ namespace TicTacToe
             return ColArray;
         }
 
+        public string[] GetDownDiagonal()
+        {
+            string[] diagonalArray = new string[side];
+            for (int i = 0; i < side; i++)
+            {
+                diagonalArray[i] = gameBoard[(side + 1) * i];
+            }
+            return diagonalArray;
+        }
+
+        public string[] GetUpDiagonal()
+        {
+            string[] diagonalArray = new string[side];
+            int startingIndex = side * (side - 1);
+            for (int i = 0; i < side; i++)
+            {
+                diagonalArray[i] = gameBoard[startingIndex - (i * (side - 1))];
+            }
+            return diagonalArray;
+        }
+
         public bool SpaceIsAvailable(int space)
         {
             int index = space - 1;

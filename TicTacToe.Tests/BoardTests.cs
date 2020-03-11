@@ -67,5 +67,29 @@ namespace TicTacToe.Tests
             Assert.Equal(middleCol3x3, new3x3Board.GetColumn(2));
             Assert.Equal(lastCol4x4, new4x4Board.GetColumn(4));
         }
+
+        [Fact]
+        public void CanGetDownDiagonal()
+        {
+            Board new3x3Board = boardFactory.BuildBoard(3);
+            Board new4x4Board = boardFactory.BuildBoard(4);
+            string[] down3x3 = new string[] { "1", "5", "9" };
+            string[] down4x4 = new string[] { "1", "6", "11", "16" };
+
+            Assert.Equal(down3x3, new3x3Board.GetDownDiagonal());
+            Assert.Equal(down4x4, new4x4Board.GetDownDiagonal());
+        }
+
+        [Fact]
+        public void CanGetUpDiagonal()
+        {
+            Board new3x3Board = boardFactory.BuildBoard(3);
+            Board new4x4Board = boardFactory.BuildBoard(4);
+            string[] up3x3 = new string[] { "7", "5", "3" };
+            string[] up4x4 = new string[] { "13", "10", "7", "4" };
+
+            Assert.Equal(up3x3, new3x3Board.GetUpDiagonal());
+            Assert.Equal(up4x4, new4x4Board.GetUpDiagonal());
+        }
     }
 }
