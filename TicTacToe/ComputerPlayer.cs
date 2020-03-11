@@ -29,24 +29,24 @@ namespace TicTacToe
         public int FindBestMove(Game game)
         {
             int moveToBlock = 0;
-            for (int s = 1; s <= game.Board.Length; s++)
+            for (int s = 1; s <= game.Board.Length(); s++)
             {
-                if (game.SpaceIsAvailable(s))
+                if (game.Board.SpaceIsAvailable(s))
                 {
                     int index = s - 1;
-                    game.Board[index] = 'O';
+                    game.Board.gameBoard[index] = game.Player2Marker;
                     if (game.WinningCombinations().Contains(true))
                     {
-                        game.Board[index] = char.Parse(s.ToString());
+                        game.Board.gameBoard[index] = s.ToString();
                         return s;
                     }
-                    game.Board[index] = 'X';
+                    game.Board.gameBoard[index] = game.Player1Marker;
                     if (game.WinningCombinations().Contains(true))
                     {
-                        game.Board[index] = char.Parse(s.ToString());
+                        game.Board.gameBoard[index] = s.ToString();
                         moveToBlock = s;
                     }
-                    game.Board[index] = char.Parse(s.ToString());
+                    game.Board.gameBoard[index] = s.ToString();
                 }
             }
             return moveToBlock == 0 ? -1 : moveToBlock;
@@ -54,7 +54,7 @@ namespace TicTacToe
         public int PickRandomSpace(Game game)
         {
             int randomSpace = rand.Next(1, 10);
-            if (game.SpaceIsAvailable(randomSpace))
+            if (game.Board.SpaceIsAvailable(randomSpace))
             {
                 return randomSpace;
             }
@@ -84,7 +84,7 @@ namespace TicTacToe
         public int PickRandomSpace(Game game)
         {
             int randomSpace = rand.Next(1, 10);
-            if (game.SpaceIsAvailable(randomSpace))
+            if (game.Board.SpaceIsAvailable(randomSpace))
             {
                 return randomSpace;
             }

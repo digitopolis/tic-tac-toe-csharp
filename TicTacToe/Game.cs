@@ -23,8 +23,7 @@ namespace TicTacToe
 
         public void MakeMove(int space)
         {
-            int index = space - 1;
-            this.Board[index] = this.CurrentPlayer.Marker;
+            Board.UpdateSpace(space, CurrentPlayer.Marker);
         }
 
         public void AddPlayers(IUserInput input)
@@ -59,23 +58,23 @@ namespace TicTacToe
             return move;
         }
 
-        public bool SpaceIsAvailable(int space)
-        {
-            int index = space - 1;
-            return Board[index] != Player1Marker && Board[index] != Player2Marker;
-        }
+        // public bool SpaceIsAvailable(int space)
+        // {
+        //     int index = space - 1;
+        //     return Board.gameBoard[index] != Player1Marker && Board.gameBoard[index] != Player2Marker;
+        // }
 
-        public bool BoardIsFull()
-        {
-            for ( int i = 1; i < this.Board.Length + 1; i++ )
-            {
-                if (SpaceIsAvailable(i))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        // public bool BoardIsFull()
+        // {
+        //     for ( int i = 1; i < this.Board.gameBoard.Length + 1; i++ )
+        //     {
+        //         if (SpaceIsAvailable(i))
+        //         {
+        //             return false;
+        //         }
+        //     }
+        //     return true;
+        // }
 
         public void SwitchCurrentPlayer()
         {
@@ -85,14 +84,14 @@ namespace TicTacToe
         public bool[] WinningCombinations()
         {
             return new bool[] {
-                Board[0] == Board[1] && Board[1] == Board[2],
-                Board[3] == Board[4] && Board[4] == Board[5],
-                Board[6] == Board[7] && Board[7] == Board[8],
-                Board[0] == Board[3] && Board[3] == Board[6],
-                Board[1] == Board[4] && Board[4] == Board[7],
-                Board[2] == Board[5] && Board[5] == Board[8],
-                Board[0] == Board[4] && Board[4] == Board[8],
-                Board[2] == Board[4] && Board[4] == Board[6],
+                Board.gameBoard[0] == Board.gameBoard[1] && Board.gameBoard[1] == Board.gameBoard[2],
+                Board.gameBoard[3] == Board.gameBoard[4] && Board.gameBoard[4] == Board.gameBoard[5],
+                Board.gameBoard[6] == Board.gameBoard[7] && Board.gameBoard[7] == Board.gameBoard[8],
+                Board.gameBoard[0] == Board.gameBoard[3] && Board.gameBoard[3] == Board.gameBoard[6],
+                Board.gameBoard[1] == Board.gameBoard[4] && Board.gameBoard[4] == Board.gameBoard[7],
+                Board.gameBoard[2] == Board.gameBoard[5] && Board.gameBoard[5] == Board.gameBoard[8],
+                Board.gameBoard[0] == Board.gameBoard[4] && Board.gameBoard[4] == Board.gameBoard[8],
+                Board.gameBoard[2] == Board.gameBoard[4] && Board.gameBoard[4] == Board.gameBoard[6],
             };
         }
 
@@ -108,7 +107,7 @@ namespace TicTacToe
                 this.State = "WIN";
                 return true;
             }
-            else if (BoardIsFull())
+            else if (Board.IsFull())
             {
                 this.State = "DRAW";
                 return true;
