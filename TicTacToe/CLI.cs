@@ -79,7 +79,7 @@ namespace TicTacToe
             return Int32.Parse(input);
         }
 
-        public void PrintBoard(char[] board)
+        public void PrintBoard(string[] board)
         {
             string horizDivider = "  - - -+- - - -+- - -";
             this.LogToConsole("");
@@ -119,7 +119,7 @@ namespace TicTacToe
 
     public interface IOutput
     {
-        void PrintBoard(char[] board);
+        void PrintBoard(string[] board);
         void LogToConsole(string message);
     }
 }

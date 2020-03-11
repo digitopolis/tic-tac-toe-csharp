@@ -26,7 +26,7 @@ namespace TicTacToe.Tests
         [InlineData("       |       |   O ")]
         public void TestPrintCurrentBoard(string line)
         {
-            char[] board = { ' ', 'X', ' ', ' ', ' ', 'O',  'X', ' ', ' ' };
+            string[] board = { " ", "X", " ", " ", " ", "O",  "X", " ", " " };
             var currentConsoleOut = Console.Out;
             using (var consoleOutput = new ConsoleOutput())
             {

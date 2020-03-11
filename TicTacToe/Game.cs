@@ -5,15 +5,15 @@ namespace TicTacToe
 {
     public class Game
     {
-        public char Player1Marker = 'X';
-        public char Player2Marker = 'O';
+        public string Player1Marker = "X";
+        public string Player2Marker = "O";
         public Game()
         {
-            this.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            // this.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             this.State = "";
         }
 
-        public char[] Board { get; set; }
+        public Board Board { get; set; }
         public int NumberOfPlayers { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
@@ -49,7 +49,7 @@ namespace TicTacToe
 
         public void DisplayCurrentBoard(IOutput output)
         {
-            output.PrintBoard(this.Board);
+            output.PrintBoard(Board.gameBoard);
         }
 
         public int NextPlayerMove(IUserInput input)
