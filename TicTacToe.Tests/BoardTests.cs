@@ -43,5 +43,29 @@ namespace TicTacToe.Tests
             Assert.True(newBoard.SpaceIsAvailable(2));
             Assert.False(newBoard.SpaceIsAvailable(3));
         }
+
+        [Fact]
+        public void CanGetSpecificRow()
+        {
+            Board new3x3Board = boardFactory.BuildBoard(3);
+            Board new4x4Board = boardFactory.BuildBoard(4);
+            string[] middleRow3x3 = new string[] { "4", "5", "6" };
+            string[] lastRow4x4 = new string[] { "13", "14", "15", "16" };
+
+            Assert.Equal(middleRow3x3, new3x3Board.GetRow(2));
+            Assert.Equal(lastRow4x4, new4x4Board.GetRow(4));
+        }
+
+        [Fact]
+        public void CanGetSpecificColumn()
+        {
+            Board new3x3Board = boardFactory.BuildBoard(3);
+            Board new4x4Board = boardFactory.BuildBoard(4);
+            string[] middleCol3x3 = new string[] { "2", "5", "8" };
+            string[] lastCol4x4 = new string[] { "4", "8", "12", "16" };
+
+            Assert.Equal(middleCol3x3, new3x3Board.GetColumn(2));
+            Assert.Equal(lastCol4x4, new4x4Board.GetColumn(4));
+        }
     }
 }

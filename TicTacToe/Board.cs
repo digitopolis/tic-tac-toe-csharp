@@ -14,6 +14,28 @@ namespace TicTacToe
 
         public int Length() => this.gameBoard.Length;
 
+        public string[] GetRow(int rowNumber)
+        {
+            string[] rowArray = new string[side];
+            int startingIndex = (rowNumber - 1) * side;
+            for (int i = 0; i < side; i++)
+            {
+                rowArray[i] = gameBoard[startingIndex + i];
+            }
+            return rowArray;
+        }
+
+        public string[] GetColumn(int colNumber)
+        {
+            string[] ColArray = new string[side];
+            int startingIndex = (colNumber - 1);
+            for (int i = 0; i < side; i++)
+            {
+                ColArray[i] = gameBoard[startingIndex + i * side];
+            }
+            return ColArray;
+        }
+
         public bool SpaceIsAvailable(int space)
         {
             int index = space - 1;
@@ -37,5 +59,18 @@ namespace TicTacToe
             int index = space - 1;
             gameBoard[index] = marker;
         }
+
+        // public bool HasWinningCombination()
+        // {
+        //     bool[] rowArray = new bool[3];
+        //     bool[] colArray = new bool[3];
+        //     for (int row = 0; row < Length(); row += side)
+        //     {
+        //         for (int col = 0; col < side - 1; col++)
+        //         {
+        //             rowArray[]
+        //         }
+        //     }
+        // }
     }
 }
