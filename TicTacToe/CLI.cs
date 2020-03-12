@@ -81,14 +81,33 @@ namespace TicTacToe
 
         public void PrintBoard(string[] board)
         {
-            string horizDivider = "  - - -+- - - -+- - -";
+
+        public void PrintBoard(Board board)
+        {
+            string horizDivider = "  - - -";
+            for (int i = 1; i < board.side; i++)
+            {
+                horizDivider += "+- - - -";
+            }
+            string boardString = "";
+            int index = 0;
             this.LogToConsole("");
-            this.LogToConsole($"   {board[0]}   |   {board[1]}   |   {board[2]} ");
-            this.LogToConsole(horizDivider);
-            this.LogToConsole($"   {board[3]}   |   {board[4]}   |   {board[5]} ");
-            this.LogToConsole(horizDivider);
-            this.LogToConsole($"   {board[6]}   |   {board[7]}   |   {board[8]} ");
-            this.LogToConsole("");
+            for (int row = 1; row <= board.side; row++)
+            {
+                string rowString = $"   {board.gameBoard[index]}   ";
+                index++;
+                for (int col = 2; col <= board.side; col++)
+                {
+                    rowString += $"|   {board.gameBoard[index]}   ";
+                    index++;
+                }
+                if (row == board.side)
+                {
+                    horizDivider = "";
+                }
+                boardString += $"{rowString}\n{horizDivider}\n";
+            }
+            this.LogToConsole(boardString);
         }
 
         public bool IsValidInput(string input, string inputFor)
@@ -119,7 +138,7 @@ namespace TicTacToe
 
     public interface IOutput
     {
-        void PrintBoard(string[] board);
+        void PrintBoard(Board board);
         void LogToConsole(string message);
     }
 }
