@@ -29,29 +29,29 @@ namespace TicTacToe
 
         public void AddPlayers(IUserInput input)
         {
-            this.NumberOfPlayers = input.GetNumberOfPlayers();
+            NumberOfPlayers = input.GetNumberOfPlayers();
             string[] names = input.GetPlayerNames(this);
-            this.Player1 = new Player(names[0], Player1Marker);
-            this.Player2 = new Player(names[1], Player2Marker);
-            if (this.NumberOfPlayers == 1)
+            Player1 = new Player(names[0], Player1Marker);
+            Player2 = new Player(names[1], Player2Marker);
+            if (NumberOfPlayers == 1)
             {
                 int selectedDifficulty = input.GetDifficultyLevel();
                 if (selectedDifficulty == 1)
                 {
-                    this.ComputerPlayer = new EasyComputerPlayer();
+                    ComputerPlayer = new EasyComputerPlayer();
                 }
                 else
                 {
-                    this.ComputerPlayer = new HardComputerPlayer();
+                    ComputerPlayer = new HardComputerPlayer();
                 }
             }
-            this.CurrentPlayer = this.Player1;
+            CurrentPlayer = Player1;
         }
 
         public void SetBoardSize(IUserInput input)
         {
             int boardSize = input.GetBoardSize();
-            this.Board = boardFactory.BuildBoard(boardSize);
+            Board = boardFactory.BuildBoard(boardSize);
         }
 
         public void DisplayCurrentBoard(IOutput output)
@@ -61,7 +61,7 @@ namespace TicTacToe
 
         public int NextPlayerMove(IUserInput input)
         {
-            int move = input.GetPlayerMove(this.CurrentPlayer, Board.side);
+            int move = input.GetPlayerMove(CurrentPlayer, Board.side);
             return move;
         }
 
@@ -76,15 +76,15 @@ namespace TicTacToe
             {
                 if (NumberOfPlayers == 1 && CurrentPlayer == Player2)
                 {
-                    this.State = "LOSE";
+                    State = "LOSE";
                     return true;
                 }
-                this.State = "WIN";
+                State = "WIN";
                 return true;
             }
             else if (Board.IsFull())
             {
-                this.State = "DRAW";
+                State = "DRAW";
                 return true;
             }
             return false;
@@ -93,7 +93,7 @@ namespace TicTacToe
         public string DisplayResult()
         {
             string result = "";
-            switch (this.State)
+            switch (State)
             {
                 case "WIN":
                     result = $"Congratulations {this.CurrentPlayer.Name}, you won!";

@@ -11,7 +11,7 @@ namespace TicTacToe
 
         public void WelcomeToGame()
         {
-            this.LogToConsole("Welcome to Tic Tac Toe!\n\n");
+            LogToConsole("Welcome to Tic Tac Toe!\n\n");
         }
 
         public string[] GetPlayerNames(Game game)
@@ -101,7 +101,7 @@ namespace TicTacToe
             }
             string boardString = "";
             int index = 0;
-            this.LogToConsole("");
+            LogToConsole("");
             for (int row = 1; row <= board.side; row++)
             {
                 string rowString = $"   {board.gameBoard[index]}   ";
@@ -117,7 +117,7 @@ namespace TicTacToe
                 }
                 boardString += $"{rowString}\n{horizDivider}\n";
             }
-            this.LogToConsole(boardString);
+            LogToConsole(boardString);
         }
 
         public bool IsValidInput(string input, string inputFor, int moveMax = 9)
