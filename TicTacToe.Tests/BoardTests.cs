@@ -91,5 +91,22 @@ namespace TicTacToe.Tests
             Assert.Equal(up3x3, new3x3Board.GetUpDiagonal());
             Assert.Equal(up4x4, new4x4Board.GetUpDiagonal());
         }
+
+        [Fact]
+        public void CanGenerateRandomNumber()
+        {
+            var computer = new HardComputerPlayer();
+            Game game = new Game();
+            game.Board = boardFactory.BuildBoard(4);
+
+            int space = game.Board.GetRandomSpace();
+            Assert.InRange(space, 1, 16);
+            space = game.Board.GetRandomSpace();
+            Assert.InRange(space, 1, 16);
+            space = game.Board.GetRandomSpace();
+            Assert.InRange(space, 1, 16);
+            space = game.Board.GetRandomSpace();
+            Assert.InRange(space, 1, 16);
+        }
     }
 }

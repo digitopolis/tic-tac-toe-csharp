@@ -24,23 +24,5 @@ namespace TicTacToe.Tests
             move = computer.FindBestMove(game);
             Assert.Equal(-1, move);         
         }
-
-        [Fact]
-        public void CanGenerateRandomNumberBetween1and9()
-        {
-            var computer = new HardComputerPlayer();
-            Game game = new Game();
-            game.Board = new Board(3);
-            game.Board.gameBoard = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-
-            int space = computer.PickRandomSpace(game);
-            Assert.InRange(space, 1, 9);
-            space = computer.PickRandomSpace(game);
-            Assert.InRange(space, 1, 9);
-            space = computer.PickRandomSpace(game);
-            Assert.InRange(space, 1, 9);
-            space = computer.PickRandomSpace(game);
-            Assert.InRange(space, 1, 9);
-        }
     }
 }

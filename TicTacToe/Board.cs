@@ -64,6 +64,21 @@ namespace TicTacToe
             return gameBoard[index] == space.ToString();
         }
 
+        public int GetRandomSpace()
+        {
+            Random rand = new Random();
+            int moveMax = side * side;
+            int randomSpace = rand.Next(1, moveMax);
+            if (SpaceIsAvailable(randomSpace))
+            {
+                return randomSpace;
+            }
+            else
+            {
+                return GetRandomSpace();
+            }
+        }
+
         public bool IsFull()
         {
             for ( int i = 1; i < gameBoard.Length + 1; i++ )

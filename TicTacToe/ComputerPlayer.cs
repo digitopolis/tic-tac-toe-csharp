@@ -16,15 +16,13 @@ namespace TicTacToe
             this.Marker = 'O';
         }
 
-        public Random rand = new Random();
-
         public string Name { get; }
         public char Marker { get; }
 
         public int MakeMove(Game game)
         {
             int nextMove = FindBestMove(game);
-            return nextMove != -1 ? nextMove : PickRandomSpace(game);
+            return nextMove != -1 ? nextMove : game.Board.GetRandomSpace();
         }
         public int FindBestMove(Game game)
         {
@@ -51,19 +49,8 @@ namespace TicTacToe
             }
             return moveToBlock == 0 ? -1 : moveToBlock;
         }
-        public int PickRandomSpace(Game game)
-        {
-            int randomSpace = rand.Next(1, 10);
-            if (game.Board.SpaceIsAvailable(randomSpace))
-            {
-                return randomSpace;
-            }
-            else
-            {
-                return PickRandomSpace(game);
-            }
-        }
     }
+
     public class EasyComputerPlayer : IComputerPlayer
     {
         public EasyComputerPlayer()
@@ -79,19 +66,7 @@ namespace TicTacToe
 
         public int MakeMove(Game game)
         {
-            return PickRandomSpace(game);
-        }
-        public int PickRandomSpace(Game game)
-        {
-            int randomSpace = rand.Next(1, 10);
-            if (game.Board.SpaceIsAvailable(randomSpace))
-            {
-                return randomSpace;
-            }
-            else
-            {
-                return PickRandomSpace(game);
-            }
+            return game.Board.GetRandomSpace();
         }
     }
 }
