@@ -5,6 +5,8 @@ namespace TicTacToe
 {
     public class Game
     {
+        static BoardFactory boardFactory = new BoardFactory();
+
         public string Player1Marker = "X";
         public string Player2Marker = "O";
         public Game()
@@ -46,14 +48,20 @@ namespace TicTacToe
             this.CurrentPlayer = this.Player1;
         }
 
+        public void SetBoardSize(IUserInput input)
+        {
+            int boardSize = input.GetBoardSize();
+            this.Board = boardFactory.BuildBoard(boardSize);
+        }
+
         public void DisplayCurrentBoard(IOutput output)
         {
-            output.PrintBoard(Board.gameBoard);
+            output.PrintBoard(Board);
         }
 
         public int NextPlayerMove(IUserInput input)
         {
-            int move = input.GetPlayerMove(this.CurrentPlayer);
+            int move = input.GetPlayerMove(this.CurrentPlayer, Board.side);
             return move;
         }
 

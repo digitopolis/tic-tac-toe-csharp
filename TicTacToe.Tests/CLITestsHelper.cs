@@ -36,10 +36,12 @@ namespace TicTacToe.Tests
             return fakeNames;
         }
 
-        public int GetPlayerMove(Player player) => 4;
+        public int GetPlayerMove(Player player, int boardSize) => 4;
 
         public int GetNumberOfPlayers() => 1;
 
         public int GetDifficultyLevel() => 2;
+
+        public int GetBoardSize() => 3;
     }
 }

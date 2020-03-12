@@ -5,7 +5,6 @@ namespace TicTacToe
     class Program
     {
         static CLI cli = new CLI();
-        static BoardFactory boardFactory = new BoardFactory();
         public static string play = "Y";
 
         static void Main(string[] args)
@@ -21,9 +20,9 @@ namespace TicTacToe
         static Game StartNewGame()
         {
             Game game = new Game();
-            game.Board = boardFactory.BuildBoard(3);
             cli.WelcomeToGame();
             game.AddPlayers(cli);
+            game.SetBoardSize(cli);
             return game;
         }
 

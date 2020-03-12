@@ -32,13 +32,14 @@ namespace TicTacToe
             return names;
         }
 
-        public int GetPlayerMove(Player player)
+        public int GetPlayerMove(Player player, int boardSize)
         {
+            int moveMax = boardSize * boardSize;
             Console.WriteLine($"{player.Name}, please select a space on the board");
             string playerInput = Console.ReadLine();
-            while (!IsValidInput(playerInput, "MOVE"))
+            while (!IsValidInput(playerInput, "MOVE", moveMax))
             {
-                Console.WriteLine("Please enter a number between 1-9");
+                Console.WriteLine($"Please enter a number between 1-{moveMax}");
                 playerInput = Console.ReadLine();
             }
             return Int32.Parse(playerInput);
@@ -47,7 +48,7 @@ namespace TicTacToe
         public string GetMenuSelection()
         {
             string input = Console.ReadLine();
-            while (!IsValidInput(input, "MENU"))
+            while (!IsValidInput(input, "YES-OR-NO"))
             {
                 Console.WriteLine("Please enter 'Y' to play again or 'N' to quit");
                 input = Console.ReadLine();
@@ -79,8 +80,17 @@ namespace TicTacToe
             return Int32.Parse(input);
         }
 
-        public void PrintBoard(string[] board)
+        public int GetBoardSize()
         {
+            LogToConsole("Please select the board size: 3 for 3x3, 4 for 4x4, or 5 for 5x5");
+            string input = Console.ReadLine();
+            while (!IsValidInput(input, "BOARD-SIZE"))
+            {
+                Console.WriteLine("Please enter '3' for a 3x3 board, '4' for 4x4, or '5' for 5x5");
+                input = Console.ReadLine();
+            }
+            return Int32.Parse(input);
+        }
 
         public void PrintBoard(Board board)
         {
@@ -110,17 +120,19 @@ namespace TicTacToe
             this.LogToConsole(boardString);
         }
 
-        public bool IsValidInput(string input, string inputFor)
+        public bool IsValidInput(string input, string inputFor, int moveMax = 9)
         {
             int number;
             switch (inputFor)
             {
                 case "MOVE":
-                    return Int32.TryParse(input, out number) && number > 0 && number <= 9;
-                case "MENU":
+                    return Int32.TryParse(input, out number) && number > 0 && number <= moveMax;
+                case "YES-OR-NO":
                     return input.ToUpper() == "Y" || input.ToUpper() == "N" ? true : false;
                 case "ONE-OR-TWO":
                     return Int32.TryParse(input, out number) && number > 0 && number <= 2;
+                case "BOARD-SIZE":
+                    return Int32.TryParse(input, out number) && number >= 3 && number <= 5;
                 default:
                     return false;
             }
@@ -131,9 +143,10 @@ namespace TicTacToe
     public interface IUserInput
     {
         string[] GetPlayerNames(Game game);
-        int GetPlayerMove(Player player);
+        int GetPlayerMove(Player player, int boardSize);
         int GetNumberOfPlayers();
         int GetDifficultyLevel();
+        int GetBoardSize();
     }
 
     public interface IOutput
