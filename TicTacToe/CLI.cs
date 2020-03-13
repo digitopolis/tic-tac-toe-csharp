@@ -104,11 +104,13 @@ namespace TicTacToe
             LogToConsole("");
             for (int row = 1; row <= board.side; row++)
             {
-                string rowString = $"   {board.gameBoard[index]}   ";
+                string marker = board.gameBoard[index];
+                string rowString = $"  {(marker.Length > 1 ? "" : " ")}{marker}   ";
                 index++;
                 for (int col = 2; col <= board.side; col++)
                 {
-                    rowString += $"|   {board.gameBoard[index]}   ";
+                    marker = board.gameBoard[index];
+                    rowString += $"|  {(marker.Length > 1 ? "" : " ")}{marker}   ";
                     index++;
                 }
                 if (row == board.side)
