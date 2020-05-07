@@ -11,16 +11,24 @@ namespace TicTacToe
 
         public void WelcomeToGame()
         {
-            this.LogToConsole("Welcome to Tic Tac Toe!\n\nTo start a new game, please enter both players' names\n");
+            this.LogToConsole("Welcome to Tic Tac Toe!\n\n");
         }
 
         public string[] GetPlayerNames(Game game)
         {
+            string[] names;
             Console.WriteLine($"Player 1 ({game.Player1Marker}), please enter your name:");
             string player1Name  = Console.ReadLine();
-            Console.WriteLine($"Player 2 ({game.Player2Marker}), please enter your name:");
-            string player2Name  = Console.ReadLine();
-            string[] names = { player1Name, player2Name };
+            if (game.NumberOfPlayers == 2)
+            {
+                Console.WriteLine($"Player 2 ({game.Player2Marker}), please enter your name:");
+                string player2Name  = Console.ReadLine();
+                names = new string[] { player1Name, player2Name };
+            }
+            else
+            {
+                names = new string[] { player1Name, "Computer"};
+            }
             return names;
         }
 
@@ -48,6 +56,18 @@ namespace TicTacToe
             return input.ToUpper();
         }
 
+        public int GetNumberOfPlayers()
+        {
+            LogToConsole("Please enter the number of players (1 or 2)");
+            string input = Console.ReadLine();
+            while (!IsValidInput(input, "PLAYERS"))
+            {
+                Console.WriteLine("Please enter '1' to play against the computer or '2' for a two person game");
+                input = Console.ReadLine();
+            }
+            return Int32.Parse(input);
+        }
+
         public void PrintBoard(char[] board)
         {
             string horizDivider = "  - - -+- - - -+- - -";
@@ -62,13 +82,15 @@ namespace TicTacToe
 
         public bool IsValidInput(string input, string inputFor)
         {
+            int number;
             switch (inputFor)
             {
                 case "MOVE":
-                    int number;
                     return Int32.TryParse(input, out number) && number > 0 && number <= 9;
                 case "MENU":
                     return input.ToUpper() == "Y" || input.ToUpper() == "N" ? true : false;
+                case "PLAYERS":
+                    return Int32.TryParse(input, out number) && number > 0 && number <= 2;
                 default:
                     return false;
             }
@@ -80,6 +102,7 @@ namespace TicTacToe
     {
         string[] GetPlayerNames(Game game);
         int GetPlayerMove(Player player);
+        int GetNumberOfPlayers();
     }
 
     public interface IOutput

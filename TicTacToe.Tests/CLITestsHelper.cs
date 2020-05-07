@@ -40,5 +40,10 @@ namespace TicTacToe.Tests
         {
             return 4;
         }
+
+        public int GetNumberOfPlayers()
+        {
+            return 2;
+        }
     }
 }

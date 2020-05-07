@@ -8,7 +8,7 @@ namespace TicTacToe.Tests
         [Fact]
         public void CanDetermineBestMoveOnBoard()
         {
-            var computer = new ComputerPlayer();
+            var computer = new HardComputerPlayer();
             Game game = new Game();
 
             // Finds a move that would result in a win for either player
@@ -20,7 +20,24 @@ namespace TicTacToe.Tests
             // Returns -1 if no move would result in a win for either player
             game.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             move = computer.FindBestMove(game);
-            Assert.Equal(-1, move);
+            Assert.Equal(-1, move);         
+        }
+
+        [Fact]
+        public void CanGenerateRandomNumberBetween1and9()
+        {
+            var computer = new HardComputerPlayer();
+            Game game = new Game ();
+            game.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+            int space = computer.PickRandomSpace(game);
+            Assert.InRange(space, 1, 9);
+            space = computer.PickRandomSpace(game);
+            Assert.InRange(space, 1, 9);
+            space = computer.PickRandomSpace(game);
+            Assert.InRange(space, 1, 9);
+            space = computer.PickRandomSpace(game);
+            Assert.InRange(space, 1, 9);
         }
     }
 }
