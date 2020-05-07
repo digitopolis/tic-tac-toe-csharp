@@ -41,7 +41,7 @@ namespace TicTacToe.Tests
         [InlineData("9")]
         public void CLICanValidateInput(string input)
         {
-            Assert.True(cli.IsValidInput(input));
+            Assert.True(cli.IsValidInput(input, "MOVE"));
         }
     }
 }
