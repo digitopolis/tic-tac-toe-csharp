@@ -5,15 +5,16 @@ namespace TicTacToe
 {
     public class Game
     {
-        public char Player1Marker = 'X';
-        public char Player2Marker = 'O';
+        static BoardFactory boardFactory = new BoardFactory();
+
+        public string Player1Marker = "X";
+        public string Player2Marker = "O";
         public Game()
         {
-            this.Board = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             this.State = "";
         }
 
-        public char[] Board { get; set; }
+        public Board Board { get; set; }
         public int NumberOfPlayers { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
@@ -23,58 +24,45 @@ namespace TicTacToe
 
         public void MakeMove(int space)
         {
-            int index = space - 1;
-            this.Board[index] = this.CurrentPlayer.Marker;
+            Board.UpdateSpace(space, CurrentPlayer.Marker);
         }
 
         public void AddPlayers(IUserInput input)
         {
-            this.NumberOfPlayers = input.GetNumberOfPlayers();
+            NumberOfPlayers = input.GetNumberOfPlayers();
             string[] names = input.GetPlayerNames(this);
-            this.Player1 = new Player(names[0], Player1Marker);
-            this.Player2 = new Player(names[1], Player2Marker);
-            if (this.NumberOfPlayers == 1)
+            Player1 = new Player(names[0], Player1Marker);
+            Player2 = new Player(names[1], Player2Marker);
+            if (NumberOfPlayers == 1)
             {
                 int selectedDifficulty = input.GetDifficultyLevel();
                 if (selectedDifficulty == 1)
                 {
-                    this.ComputerPlayer = new EasyComputerPlayer();
+                    ComputerPlayer = new EasyComputerPlayer();
                 }
                 else
                 {
-                    this.ComputerPlayer = new HardComputerPlayer();
+                    ComputerPlayer = new HardComputerPlayer();
                 }
             }
-            this.CurrentPlayer = this.Player1;
+            CurrentPlayer = Player1;
+        }
+
+        public void SetBoardSize(IUserInput input)
+        {
+            int boardSize = input.GetBoardSize();
+            Board = boardFactory.BuildBoard(boardSize);
         }
 
         public void DisplayCurrentBoard(IOutput output)
         {
-            output.PrintBoard(this.Board);
+            output.PrintBoard(Board);
         }
 
         public int NextPlayerMove(IUserInput input)
         {
-            int move = input.GetPlayerMove(this.CurrentPlayer);
+            int move = input.GetPlayerMove(CurrentPlayer, Board.side);
             return move;
-        }
-
-        public bool SpaceIsAvailable(int space)
-        {
-            int index = space - 1;
-            return Board[index] != Player1Marker && Board[index] != Player2Marker;
-        }
-
-        public bool BoardIsFull()
-        {
-            for ( int i = 1; i < this.Board.Length + 1; i++ )
-            {
-                if (SpaceIsAvailable(i))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         public void SwitchCurrentPlayer()
@@ -82,35 +70,21 @@ namespace TicTacToe
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
         }
 
-        public bool[] WinningCombinations()
-        {
-            return new bool[] {
-                Board[0] == Board[1] && Board[1] == Board[2],
-                Board[3] == Board[4] && Board[4] == Board[5],
-                Board[6] == Board[7] && Board[7] == Board[8],
-                Board[0] == Board[3] && Board[3] == Board[6],
-                Board[1] == Board[4] && Board[4] == Board[7],
-                Board[2] == Board[5] && Board[5] == Board[8],
-                Board[0] == Board[4] && Board[4] == Board[8],
-                Board[2] == Board[4] && Board[4] == Board[6],
-            };
-        }
-
         public bool IsOver()
         {
-            if (WinningCombinations().Contains(true))
+            if (Board.HasWinningCombination())
             {
                 if (NumberOfPlayers == 1 && CurrentPlayer == Player2)
                 {
-                    this.State = "LOSE";
+                    State = "LOSE";
                     return true;
                 }
-                this.State = "WIN";
+                State = "WIN";
                 return true;
             }
-            else if (BoardIsFull())
+            else if (Board.IsFull())
             {
-                this.State = "DRAW";
+                State = "DRAW";
                 return true;
             }
             return false;
@@ -119,7 +93,7 @@ namespace TicTacToe
         public string DisplayResult()
         {
             string result = "";
-            switch (this.State)
+            switch (State)
             {
                 case "WIN":
                     result = $"Congratulations {this.CurrentPlayer.Name}, you won!";

@@ -22,6 +22,7 @@ namespace TicTacToe
             Game game = new Game();
             cli.WelcomeToGame();
             game.AddPlayers(cli);
+            game.SetBoardSize(cli);
             return game;
         }
 
@@ -29,7 +30,7 @@ namespace TicTacToe
         {
             game.DisplayCurrentBoard(cli);
             int nextMove = game.NextPlayerMove(cli);
-            while (!game.SpaceIsAvailable(nextMove))
+            while (!game.Board.SpaceIsAvailable(nextMove))
             {
                 cli.LogToConsole("Sorry, that space isn't available");
                 nextMove = game.NextPlayerMove(cli);

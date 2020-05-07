@@ -14,10 +14,10 @@ namespace TicTacToe.Tests
         public void CanCreateNewGame() => Assert.IsType<Game>(game);
 
         [Fact]
-        public void GameHasABoard() => Assert.IsType<Char[]>(game.Board);
+        public void GameHasABoard() => Assert.IsType<Board>(game.Board);
 
-        [Fact]
-        public void GameBoardHasNineSpaces() => Assert.Equal(9, game.Board.Length);
+        // [Fact]
+        // public void GameBoardHasNineSpaces() => Assert.Equal(9, game.Board.Length);
 
         [Fact]
         public void GameHasTwoPlayers()
@@ -33,13 +33,14 @@ namespace TicTacToe.Tests
         [Fact]
         public void GameCanMakeMoveOnBoard()
         {
+            game.Board = new Board(3);
         //Given a player has joined a game
             game.Player1 = player1;
             game.CurrentPlayer = player1;
         //When player picks a valid space
             game.MakeMove(2);
         //Then Board is updated with player's marker
-            Assert.Equal(game.Player1Marker, game.Board[1]);
+            Assert.Equal(game.Player1Marker, game.Board.gameBoard[1]);
         }
 
         [Fact]
@@ -56,13 +57,13 @@ namespace TicTacToe.Tests
             Assert.Equal(4, move);
         }
 
-        [Fact]
-        public void GameCanCheckMoveAvailability()
-        {
-            game.Board = new char[] { 'X', '2', 'O', 'O', '5', '6', 'X', '8', '9' };
-            Assert.True(game.SpaceIsAvailable(2));
-            Assert.False(game.SpaceIsAvailable(3));
-        }
+        // [Fact]
+        // public void GameCanCheckMoveAvailability()
+        // {
+        //     game.Board = new string[] { 'X', '2', 'O', 'O', '5', '6', 'X', '8', '9' };
+        //     Assert.True(game.SpaceIsAvailable(2));
+        //     Assert.False(game.SpaceIsAvailable(3));
+        // }
 
         [Fact]
         public void GameCanAlternatePlayers()
@@ -81,17 +82,28 @@ namespace TicTacToe.Tests
         [Fact]
         public void GameCanDetermineIfOver()
         {
-            char[] winnerBoard = { 'X', 'X', 'X', 'O', '5', '6', 'O', '8', '9' };   // X has three on top row
-            char[] drawBoard = { 'X', 'X', 'O', 'O', 'O', 'X', 'X', 'O', 'X' };     // full board with no winner
-            char[] inPlayBoard = { 'X', '2', 'O', 'O', '5', '6', 'X', '8', '9' };   // board not yet full, no winner yet
+            Board newBoard = new Board(3);
+            game.Board = newBoard;
+            
+            string[] rowWinnerBoard = { "X", "X", "X", "O", "5", "6", "O", "8", "9" };   // X has three on top row
+            string[] colWinnerBoard = { "O", "2", "X", "O", "X", "6", "O", "8", "9" };
+            string[] diagonalWinnerBoard = { "X", "2", "O", "O", "X", "6", "O", "8", "X" };
+            string[] drawBoard = { "X", "X", "O", "O", "O", "X", "X", "O", "X" };     // full board with no winner
+            string[] inPlayBoard = { "X", "2", "O", "O", "5", "6", "X", "8", "9" };   // board not yet full, no winner yet
 
-            game.Board = winnerBoard;
+            game.Board.gameBoard = rowWinnerBoard;
             Assert.True(game.IsOver());
 
-            game.Board = drawBoard;
+            game.Board.gameBoard = colWinnerBoard;
             Assert.True(game.IsOver());
 
-            game.Board = inPlayBoard;
+            game.Board.gameBoard = diagonalWinnerBoard;
+            Assert.True(game.IsOver());
+
+            game.Board.gameBoard = drawBoard;
+            Assert.True(game.IsOver());
+
+            game.Board.gameBoard = inPlayBoard;
             Assert.False(game.IsOver());
         }
 

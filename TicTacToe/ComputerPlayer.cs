@@ -16,54 +16,41 @@ namespace TicTacToe
             this.Marker = 'O';
         }
 
-        public Random rand = new Random();
-
         public string Name { get; }
         public char Marker { get; }
 
         public int MakeMove(Game game)
         {
             int nextMove = FindBestMove(game);
-            return nextMove != -1 ? nextMove : PickRandomSpace(game);
+            return nextMove != -1 ? nextMove : game.Board.GetRandomSpace();
         }
         public int FindBestMove(Game game)
         {
             int moveToBlock = 0;
-            for (int s = 1; s <= game.Board.Length; s++)
+            for (int s = 1; s <= game.Board.Length(); s++)
             {
-                if (game.SpaceIsAvailable(s))
+                if (game.Board.SpaceIsAvailable(s))
                 {
                     int index = s - 1;
-                    game.Board[index] = 'O';
-                    if (game.WinningCombinations().Contains(true))
+                    game.Board.gameBoard[index] = game.Player2Marker;
+                    if (game.Board.HasWinningCombination())
                     {
-                        game.Board[index] = char.Parse(s.ToString());
+                        game.Board.gameBoard[index] = s.ToString();
                         return s;
                     }
-                    game.Board[index] = 'X';
-                    if (game.WinningCombinations().Contains(true))
+                    game.Board.gameBoard[index] = game.Player1Marker;
+                    if (game.Board.HasWinningCombination())
                     {
-                        game.Board[index] = char.Parse(s.ToString());
+                        game.Board.gameBoard[index] = s.ToString();
                         moveToBlock = s;
                     }
-                    game.Board[index] = char.Parse(s.ToString());
+                    game.Board.gameBoard[index] = s.ToString();
                 }
             }
             return moveToBlock == 0 ? -1 : moveToBlock;
         }
-        public int PickRandomSpace(Game game)
-        {
-            int randomSpace = rand.Next(1, 10);
-            if (game.SpaceIsAvailable(randomSpace))
-            {
-                return randomSpace;
-            }
-            else
-            {
-                return PickRandomSpace(game);
-            }
-        }
     }
+
     public class EasyComputerPlayer : IComputerPlayer
     {
         public EasyComputerPlayer()
@@ -79,19 +66,7 @@ namespace TicTacToe
 
         public int MakeMove(Game game)
         {
-            return PickRandomSpace(game);
-        }
-        public int PickRandomSpace(Game game)
-        {
-            int randomSpace = rand.Next(1, 10);
-            if (game.SpaceIsAvailable(randomSpace))
-            {
-                return randomSpace;
-            }
-            else
-            {
-                return PickRandomSpace(game);
-            }
+            return game.Board.GetRandomSpace();
         }
     }
 }

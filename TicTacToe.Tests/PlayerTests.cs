@@ -7,7 +7,7 @@ namespace TicTacToe.Tests
     public class PlayerTests
     {
         static string name = "Matt";
-        static char marker = 'X';
+        static string marker = "X";
         Player player = new Player(name, marker);
 
         [Fact]
