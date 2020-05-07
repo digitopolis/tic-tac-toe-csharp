@@ -35,7 +35,15 @@ namespace TicTacToe
             this.Player2 = new Player(names[1], Player2Marker);
             if (this.NumberOfPlayers == 1)
             {
-                this.ComputerPlayer = new HardComputerPlayer();
+                int selectedDifficulty = input.GetDifficultyLevel();
+                if (selectedDifficulty == 1)
+                {
+                    this.ComputerPlayer = new EasyComputerPlayer();
+                }
+                else
+                {
+                    this.ComputerPlayer = new HardComputerPlayer();
+                }
             }
             this.CurrentPlayer = this.Player1;
         }
@@ -90,7 +98,6 @@ namespace TicTacToe
 
         public bool IsOver()
         {
-            // A player has three in a row
             if (WinningCombinations().Contains(true))
             {
                 if (NumberOfPlayers == 1 && CurrentPlayer == Player2)
@@ -101,13 +108,11 @@ namespace TicTacToe
                 this.State = "WIN";
                 return true;
             }
-            // Board is full, no winner
             else if (BoardIsFull())
             {
                 this.State = "DRAW";
                 return true;
             }
-            // Board is not full, no winner
             return false;
         }
 
